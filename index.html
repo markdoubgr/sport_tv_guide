@@ -4,7 +4,7 @@
     <title>Page Title</title>
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script> -->
 
    </head>
   <body>
@@ -14,8 +14,14 @@
       <span class="two-select">+2</span>
       <span class="three-select">+3</span>
     </div>
+    <div id="match-filters">
+      <div id="sport-filters"></div>
+      <div id="channel-filters"></div>
+    </div>
     <div id="loading">Loading...</div>
-    <div id="match-list">Fetching matches...</div>
+    <div id="match-list">
+      <table id='match-table'></table>
+    </div>
   </body>
   <script type="text/javascript" src="js/main.js"></script>
 </html>
