@@ -48,11 +48,17 @@ function createEventsArray(rowsReturned) {
 function createEventsTable(events) {
   var tableStr = "";
   $.each(events, function (index, evt) {
-    tableStr += "<tr>\
+    var sportClass = "sport" + evt.sport.replace(/ /g, "-").toLowerCase();
+    var competitionClass = " competition" + evt.evt.competition.replace(/ /g, "-").toLowerCase();
+    var channelClass = "";
+    $.each(evt.channels, function (ind, channel) {
+      channelClass += " channel-" + channel.replace(/ /g, "-").toLowerCase();
+    });
+    tableStr += "<tr class='"+ sportClass + competitionClass + channelClass +"'>\
     <td class='match-time'>"+ evt.time +"</td>\
-    <td class='match-sport sport-"+ evt.sport.replace(/ /g, "-").toLowerCase() +"'>"+ evt.sport +"</td>\
+    <td class='match-sport sport-"+ sportClass +"'>"+ evt.sport +"</td>\
     <td class='match-evt'><span class='match-evt-match'>"+ evt.evt.match +"</span>\
-    <span class='match-evt-competition competition-"+ evt.evt.competition.replace(/ /g, "-").toLowerCase() +"'>"+ evt.evt.competition +"</td>\
+    <span class='match-evt-competition competition-"+  +"'>"+ evt.evt.competition +"</td>\
     <td class='match-channels'>";
     var channelsStr = "";
     $.each(evt.channels, function (ind, channel) {
@@ -74,11 +80,24 @@ function getDateStr(daysAfter) {
 
 function refreshFilters(events) {
   var channels = [];
+  var sports = [];
   $.each(events, function (index, event) {
-    if (channels.indexOf("event.channel") < 0) {
-
-      //add to channels
+    if (sports.indexOf(event.sport) < 0) {
+      sports.push(event.sport);
+      var sportClass = "sport" + event.sport.replace(/ /g, "-").toLowerCase();
+      $("#sport-filters").append("<div class='filter visible filter-"+ sportClass +"'>" + event.sport + "</div>");
+      $(".filter-" + sportClass).off("click");
+      $(".filter-" + sportClass).on("click", function (ev) {
+        if ($(ev.target).hasClass("visible")) {
+          $(ev.target).removeClass("visible")
+          $("." + sportClass).hide();
+        } else {
+          $(ev.target).addClass("visible")
+          $("." + sportClass).show();
+        }
+      });
     }
+    // $("#sport-filters")
   });
 }
 
