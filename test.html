@@ -1,0 +1,836 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Betfair TV Guide</title>
+  <!-- Cloud version -->
+  <link href="/stylesheets/reset.css?1465385584" media="all" rel="stylesheet" type="text/css">
+<link href="/stylesheets/calendar.css?1465385584" media="all" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/print.css?1465385584" media="print" rel="stylesheet" type="text/css">
+  <!--[if lte IE 7]>
+    <link href="/stylesheets/ie_fixes.css?1465385584" media="screen" rel="stylesheet" type="text/css">
+  <![endif]-->
+  <script src="/javascripts/jquery-1.2.6.min.js?1465385584" type="text/javascript"></script>
+<script src="/javascripts/jquery.cookie.js?1465385584" type="text/javascript"></script>
+<script src="/javascripts/calendar.js?1465385584" type="text/javascript"></script>
+<script type="text/javascript">
+var current_scope = "tv";
+var current_year = "2016";
+var current_month = "12";
+var current_day = "15";
+var current_channels = "";
+var current_locale = "english-uk";
+</script>
+</head>
+<body>
+  <div id="wrapper">
+    <div id="header">
+    <div class="left">
+        <a href="http://www.betfair.com" target="new" title="Betfair.com"><img alt="Betfair" class="ie6_png_fix" src="/images/img-bfex-logo.png?1465385584"></a>
+    </div>
+    <div class="right">
+        <form action="/english-uk/search" method="get" accept-charset="utf-8">
+            <input type="text" id="search_box" name="term" value="" placeholder="Search TV guide" />
+            <input type="image" src="/images/img-search.png" name="submit" alt="Search" />
+            <a href="http://www.betfair.com" class="betfair_link" target="new">Join Betfair</a>
+        </form>
+    </div>
+</div>
+
+    <div id="content">
+      <div id="sidebar">
+  <div id="navigation">
+    <div id="date_selection">
+      <form action="/english-uk/tv/go_to_date" method="get" accept-charset="utf-8">
+        <div>
+          <select id="month" name="month"><option value="1">January</option>
+<option value="2">February</option>
+<option value="3">March</option>
+<option value="4">April</option>
+<option value="5">May</option>
+<option value="6">June</option>
+<option value="7">July</option>
+<option value="8">August</option>
+<option value="9">September</option>
+<option value="10">October</option>
+<option value="11">November</option>
+<option value="12" selected="selected">December</option></select>
+          <select id="day" name="day"><option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="7">7</option>
+<option value="8">8</option>
+<option value="9">9</option>
+<option value="10">10</option>
+<option value="11">11</option>
+<option value="12">12</option>
+<option value="13">13</option>
+<option value="14">14</option>
+<option value="15" selected="selected">15</option>
+<option value="16">16</option>
+<option value="17">17</option>
+<option value="18">18</option>
+<option value="19">19</option>
+<option value="20">20</option>
+<option value="21">21</option>
+<option value="22">22</option>
+<option value="23">23</option>
+<option value="24">24</option>
+<option value="25">25</option>
+<option value="26">26</option>
+<option value="27">27</option>
+<option value="28">28</option>
+<option value="29">29</option>
+<option value="30">30</option>
+<option value="31">31</option></select><br/>
+          <div class="go_button"><a href="#" class="go">Go</a></div>
+        </div>
+      </form>
+
+      <span class="greyed_out spaced">Go to Today</span>
+
+    </div>
+
+    <h1>Popular</h1>
+    <div class="selectable_sports">
+        <input type="checkbox" name="cricket" value="" />Cricket
+    <br/>
+        <input type="checkbox" name="greyhound_racing" value="" />Greyhound Racing
+    <br/>
+        <input type="checkbox" name="horse_racing" value="" />Horse Racing
+    <br/>
+        <input type="checkbox" name="soccer" value="" />Soccer
+    <br/>
+        <input type="checkbox" name="tennis" value="" />Tennis
+    <br/>
+    </div>
+
+
+    <h1>A - Z</h1>
+    <div class="selectable_sports">
+        <input type="checkbox" name="american_football" value="" />American Football
+    <br/>
+        <input type="checkbox" name="australian_rules" value="" />Australian Rules
+    <br/>
+        <input type="checkbox" name="baseball" value="" />Baseball
+    <br/>
+        <input type="checkbox" name="basketball" value="" />Basketball
+    <br/>
+        <input type="checkbox" name="bowls" value="" />Bowls
+    <br/>
+        <input type="checkbox" name="boxing" value="" />Boxing
+    <br/>
+        <input type="checkbox" name="combat_sports" value="" />Combat Sports
+    <br/>
+        <input type="checkbox" name="cricket" value="" />Cricket
+    <br/>
+        <input type="checkbox" name="cycling" value="" />Cycling
+    <br/>
+        <input type="checkbox" name="darts" value="" />Darts
+    <br/>
+        <input type="checkbox" name="floorball" value="" />Floorball
+    <br/>
+        <input type="checkbox" name="gaelic_games" value="" />Gaelic Games
+    <br/>
+        <input type="checkbox" name="golf" value="" />Golf
+    <br/>
+        <input type="checkbox" name="greyhound_racing" value="" />Greyhound Racing
+    <br/>
+        <input type="checkbox" name="handball" value="" />Handball
+    <br/>
+        <input type="checkbox" name="hockey" value="" />Hockey
+    <br/>
+        <input type="checkbox" name="horse_racing" value="" />Horse Racing
+    <br/>
+        <input type="checkbox" name="ice_hockey" value="" />Ice Hockey
+    <br/>
+        <input type="checkbox" name="motor_sport" value="" />Motor Sport
+    <br/>
+        <input type="checkbox" name="pelota" value="" />Pelota
+    <br/>
+        <input type="checkbox" name="poker" value="" />Poker
+    <br/>
+        <input type="checkbox" name="rugby_league" value="" />Rugby League
+    <br/>
+        <input type="checkbox" name="rugby_union" value="" />Rugby Union
+    <br/>
+        <input type="checkbox" name="snooker" value="" />Snooker
+    <br/>
+        <input type="checkbox" name="soccer" value="" />Soccer
+    <br/>
+        <input type="checkbox" name="tennis" value="" />Tennis
+    <br/>
+        <input type="checkbox" name="volleyball" value="" />Volleyball
+    <br/>
+        <input type="checkbox" name="winter_sports" value="" />Winter Sports
+    <br/>
+    </div>
+
+
+
+        <div class="gbr_mediaplex">
+            <a href="http://altfarm.mediaplex.com/ad/nc/7778-42351-16606-383?mpt=326">
+              <img src="http://altfarm.mediaplex.com/ad/nb/7778-42351-16606-383?mpt=92" alt="Click Here" border="0">
+            </a>
+        </div>
+
+        <div class="gbr_mediaplex">
+            <a href="http://altfarm.mediaplex.com/ad/nc/7778-42351-16606-382?mpt=99">
+              <img src="http://altfarm.mediaplex.com/ad/nb/7778-42351-16606-382?mpt=832" alt="Click Here" border="0">
+            </a>
+        </div>
+
+  </div>
+</div>
+
+      <a name="top_of_page"></a>
+      <div id="tab_wrapper">
+  <a href="/english-uk/tv" class="tab selected">TV Listing</a>
+  <a href="/english-uk/all" class="tab">All Events Listing</a>
+</div>
+<div id="locale_and_channel">
+    <form id="select_locale" action="#" method="get" accept-charset="utf-8">
+      <select id="locales" name="locales"><option value="cesky">Česky</option>
+<option value="dansk">Dansk</option>
+<option value="deutsch">Deutsch</option>
+<option value="english-asia">English - Asia</option>
+<option value="english-aus-nz">English - AUS &amp; NZ</option>
+<option value="english-canada">English - Canada</option>
+<option value="english-ire">English - IRE</option>
+<option value="english-uk" selected="selected">English - UK</option>
+<option value="espanol">Español</option>
+<option value="francais">Français</option>
+<option value="italiano">Italiano</option>
+<option value="norsk">Norsk</option>
+<option value="polski">Polski</option>
+<option value="portugues">Português</option>
+<option value="suomi">Suomi</option>
+<option value="svenska">Svenska</option>
+<option value="turkce">Türkçe</option>
+<option value="hellenika">Ελληνικά</option>
+<option value="balgarsci">български</option>
+<option value="russkij">Русский</option>
+<option value="zhong">简体中文</option>
+<option value="zhong_tw">繁體中文</option></select>
+    </form>
+    <form id="select_channel" action="#" method="get" accept-charset="utf-8">
+        <select id="channels" name="channels"><option value="tv">All TV Channels</option>
+<option value="6">ATR</option>
+<option value="7">BBC 1</option>
+<option value="8">BBC 1 Northern Ireland</option>
+<option value="9">BBC 1 Scotland</option>
+<option value="10">BBC 1 Wales</option>
+<option value="11">BBC 2</option>
+<option value="12">BBC 2 Northern Ireland</option>
+<option value="13">BBC 2 Scotland</option>
+<option value="14">BBC 2 Wales</option>
+<option value="197">BBC 3</option>
+<option value="951">BBC 4</option>
+<option value="260">BBC ALBA</option>
+<option value="15">BBCi</option>
+<option value="567,970,340,195">Betfair Live Video</option>
+<option value="532">BoxNation</option>
+<option value="659">BT Sport 1</option>
+<option value="660">BT Sport 2</option>
+<option value="829">BT Sport 3</option>
+<option value="285">BT Sport ESPN</option>
+<option value="748">BT Sport Extra</option>
+<option value="845">BT Sport Showcase</option>
+<option value="32">Channel 4</option>
+<option value="249">Chelsea TV</option>
+<option value="928">Dave</option>
+<option value="17">Eurosport 1 </option>
+<option value="287">Eurosport 2 </option>
+<option value="49">Five</option>
+<option value="508">Five  Star</option>
+<option value="64">ITV 1</option>
+<option value="65">ITV 2</option>
+<option value="66">ITV 3</option>
+<option value="67">ITV 4</option>
+<option value="274">ITV Interactive</option>
+<option value="252">LFC TV</option>
+<option value="561">More 4</option>
+<option value="251">MUTV</option>
+<option value="968">NFL Game Pass</option>
+<option value="836">Pick </option>
+<option value="389">Premier Sports</option>
+<option value="300">Primetimelive</option>
+<option value="719">Quest TV</option>
+<option value="83">Racing UK</option>
+<option value="553">RP Greyhound TV</option>
+<option value="104">S4C</option>
+<option value="115">Sky Box Office</option>
+<option value="117">Sky One</option>
+<option value="124">Sky Sports 1</option>
+<option value="125">Sky Sports 2</option>
+<option value="126">Sky Sports 3</option>
+<option value="127">Sky Sports 4</option>
+<option value="707">Sky Sports 5</option>
+<option value="560">Sky Sports F1</option>
+<option value="263">Sky Sports Interactive</option>
+<option value="958">Sky Sports Mix</option>
+<option value="959">Sky Sports Mix</option>
+<option value="432">Sky Sports Xtra</option>
+<option value="663">Sky Two</option>
+<option value="588">STV</option>
+<option value="316">Youtube</option>
+<option value="947">youtube.com</option></select>
+    </form>
+</div>
+
+<div id="listings_bookend">
+  <h2>Thursday 15th December</h2>
+  <div class="previous_and_next_day">
+
+    <a href="/english-uk/tv/2016-12-14#bottom_of_page"> « Previous day</a>
+
+  <span>&nbsp;&nbsp;&nbsp;</span>
+
+    <a href="/english-uk/tv/2016-12-16#top_of_page">Next day » </a>
+
+</div>
+
+</div>
+
+<div id="listings_content">
+
+    <table>
+
+    <tr class="odd race_meeting">
+      <td class="time">17:30</td>
+      <td class="sport">Horse Racing</td>
+      <td class="event">          <a href="#" class="toggle_race_meeting close_race_meeting blue_link">HipoCh (CHL) 15th Dec</a>
+          <ul class="race_list">
+                          <li>17:30 <a href="https://www.betfair.com/exchange/plus/#/market/1.128776933" class="blue_link" target="new">R1 1000m Hcap</a></li>
+                          <li>17:56 <a href="https://www.betfair.com/exchange/plus/#/market/1.128776948" class="blue_link" target="new">R2 1000m Mdn</a></li>
+                          <li>18:22 <a href="https://www.betfair.com/exchange/plus/#/market/1.128776949" class="blue_link" target="new">R3 1400m Hcap</a></li>
+                          <li>18:46 <a href="https://www.betfair.com/exchange/plus/#/market/1.128776951" class="blue_link" target="new">R4 1000m Allw</a></li>
+                          <li>19:09 <a href="https://www.betfair.com/exchange/plus/#/market/1.128776955" class="blue_link" target="new">R5 2000m Stks</a></li>
+                          <li>19:36 <a href="https://www.betfair.com/exchange/plus/#/market/1.128776956" class="blue_link" target="new">R6 1200m Mdn</a></li>
+                          <li>20:00 <a href="https://www.betfair.com/exchange/plus/#/market/1.128776957" class="blue_link" target="new">R7 1500m Stks</a></li>
+                          <li>20:27 <a href="https://www.betfair.com/exchange/plus/#/market/1.128776961" class="blue_link" target="new">R8 1000m Hcap</a></li>
+                          <li>20:51 <a href="https://www.betfair.com/exchange/plus/#/market/1.128776963" class="blue_link" target="new">R9 1200m Hcap</a></li>
+                          <li>21:17 <a href="https://www.betfair.com/exchange/plus/#/market/1.128776966" class="blue_link" target="new">R10 1400m Hcap</a></li>
+                          <li>21:45 <a href="https://www.betfair.com/exchange/plus/#/market/1.128776978" class="blue_link" target="new">R11 1000m Hcap</a></li>
+                          <li>22:12 <a href="https://www.betfair.com/exchange/plus/#/market/1.128776979" class="blue_link" target="new">R12 1000m Hcap</a></li>
+                          <li>22:39 <a href="https://www.betfair.com/exchange/plus/#/market/1.128776980" class="blue_link" target="new">R13 1000m Hcap</a></li>
+                          <li>23:07 <a href="https://www.betfair.com/exchange/plus/#/market/1.128776996" class="blue_link" target="new">R14 1000m Hcap</a></li>
+                      </ul>
+        </td>
+      <td class="broadcasts">
+        <ul>
+
+                        <li>
+                                                <a href="http://livevideo.betfair.com/Default.do?mi=128776933" class="blue_link" target="new">Betfair Live Video</a>
+                                                        </li>
+                                          </ul>
+      </td>
+      <td class="bet_now">
+
+            <a href="https://www.betfair.com/exchange/plus/#/market/1.128776933" class="smaller_betfair_link" title="Bet Now" target="new">Bet&nbspNow</a>
+
+              </td>
+      <td class="in_play"></td>
+    </tr>
+
+    <tr class="even ">
+      <td class="time">19:00</td>
+      <td class="sport">Snooker</td>
+      <td class="event">          <a href="https://www.betfair.com/exchange/plus/#/market/1.128785036" class="blue_link" target="new">Scottish Open 2016 - Liang Wenbo v Barry Hawkins</a>
+        </td>
+      <td class="broadcasts">
+        <ul>
+
+                        <li>
+                                                <a href="http://livevideo.betfair.com/Default.do?mi=128785036" class="blue_link" target="new">Betfair Live Video</a>
+                                                        </li>
+                                          </ul>
+      </td>
+      <td class="bet_now">
+
+            <a href="https://www.betfair.com/exchange/plus/#/market/1.128785036" class="smaller_betfair_link" title="Bet Now" target="new">Bet&nbspNow</a>
+
+              </td>
+      <td class="in_play"></td>
+    </tr>
+
+    <tr class="odd ">
+      <td class="time">19:00</td>
+      <td class="sport">Snooker</td>
+      <td class="event">          Scottish Open 2016
+        </td>
+      <td class="broadcasts">
+        <ul>
+
+                        <li>
+                              Eurosport 1
+                                            <span>19:00 - 22:00</span>
+                          </li>
+                                          </ul>
+      </td>
+      <td class="bet_now">
+              </td>
+      <td class="in_play"></td>
+    </tr>
+
+    <tr class="even ">
+      <td class="time">19:00</td>
+      <td class="sport">Darts</td>
+      <td class="event">          PDC World Championships - World Darts Championship 2017
+        </td>
+      <td class="broadcasts">
+        <ul>
+
+                        <li>
+                              Sky Sports 3
+                                            <span>19:00 - 23:00</span>
+                          </li>
+
+                        <li>
+                              Sky Sports Mix
+                                            <span>19:00 - 23:00</span>
+                          </li>
+                                          </ul>
+      </td>
+      <td class="bet_now">
+              </td>
+      <td class="in_play"></td>
+    </tr>
+
+    <tr class="odd race_meeting">
+      <td class="time">19:25</td>
+      <td class="sport">Greyhound Racing</td>
+      <td class="event">          <a href="#" class="toggle_race_meeting close_race_meeting blue_link">BVue 15th Dec</a>
+          <ul class="race_list">
+                          <li>19:25 <a href="https://www.betfair.com/exchange/plus/#/market/1.128774527" class="blue_link" target="new">A9 470m</a></li>
+                          <li>19:39 <a href="https://www.betfair.com/exchange/plus/#/market/1.128774529" class="blue_link" target="new">A8 470m</a></li>
+                          <li>19:54 <a href="https://www.betfair.com/exchange/plus/#/market/1.128774531" class="blue_link" target="new">A6 470m</a></li>
+                          <li>20:10 <a href="https://www.betfair.com/exchange/plus/#/market/1.128774533" class="blue_link" target="new">A7 470m</a></li>
+                          <li>20:26 <a href="https://www.betfair.com/exchange/plus/#/market/1.128774535" class="blue_link" target="new">A6 470m</a></li>
+                          <li>20:42 <a href="https://www.betfair.com/exchange/plus/#/market/1.128774537" class="blue_link" target="new">A5 470m</a></li>
+                          <li>20:58 <a href="https://www.betfair.com/exchange/plus/#/market/1.128774539" class="blue_link" target="new">A4 470m</a></li>
+                          <li>21:15 <a href="https://www.betfair.com/exchange/plus/#/market/1.128774541" class="blue_link" target="new">S2 590m</a></li>
+                          <li>21:32 <a href="https://www.betfair.com/exchange/plus/#/market/1.128774543" class="blue_link" target="new">A5 470m</a></li>
+                          <li>21:48 <a href="https://www.betfair.com/exchange/plus/#/market/1.128774545" class="blue_link" target="new">A4 470m</a></li>
+                          <li>22:03 <a href="https://www.betfair.com/exchange/plus/#/market/1.128774547" class="blue_link" target="new">A3 470m</a></li>
+                          <li>22:18 <a href="https://www.betfair.com/exchange/plus/#/market/1.128774549" class="blue_link" target="new">A2 470m</a></li>
+                      </ul>
+        </td>
+      <td class="broadcasts">
+        <ul>
+
+                        <li>
+                                                <a href="http://livevideo.betfair.com/Default.do?mi=128774527" class="blue_link" target="new">Betfair Live Video</a>
+                                                        </li>
+
+                        <li>
+                              RP Greyhound TV
+                                        </li>
+                                          </ul>
+      </td>
+      <td class="bet_now">
+
+            <a href="https://www.betfair.com/exchange/plus/#/market/1.128774527" class="smaller_betfair_link" title="Bet Now" target="new">Bet&nbspNow</a>
+
+              </td>
+      <td class="in_play"></td>
+    </tr>
+
+    <tr class="even race_meeting">
+      <td class="time">19:30</td>
+      <td class="sport">Greyhound Racing</td>
+      <td class="event">          <a href="#" class="toggle_race_meeting close_race_meeting blue_link">Henl 15th Dec</a>
+          <ul class="race_list">
+                          <li>19:31 <a href="https://www.betfair.com/exchange/plus/#/market/1.128774608" class="blue_link" target="new">A10 460m</a></li>
+                          <li>19:47 <a href="https://www.betfair.com/exchange/plus/#/market/1.128774610" class="blue_link" target="new">A9 460m</a></li>
+                          <li>20:02 <a href="https://www.betfair.com/exchange/plus/#/market/1.128774612" class="blue_link" target="new">A8 460m</a></li>
+                          <li>20:18 <a href="https://www.betfair.com/exchange/plus/#/market/1.128774614" class="blue_link" target="new">OR 277m</a></li>
+                          <li>20:34 <a href="https://www.betfair.com/exchange/plus/#/market/1.128774616" class="blue_link" target="new">OR 277m</a></li>
+                          <li>20:50 <a href="https://www.betfair.com/exchange/plus/#/market/1.128774618" class="blue_link" target="new">OR 460m</a></li>
+                          <li>21:06 <a href="https://www.betfair.com/exchange/plus/#/market/1.128774620" class="blue_link" target="new">OR 428m</a></li>
+                          <li>21:24 <a href="https://www.betfair.com/exchange/plus/#/market/1.128774622" class="blue_link" target="new">OR 550m</a></li>
+                          <li>21:40 <a href="https://www.betfair.com/exchange/plus/#/market/1.128774624" class="blue_link" target="new">A7 460m</a></li>
+                          <li>21:56 <a href="https://www.betfair.com/exchange/plus/#/market/1.128774626" class="blue_link" target="new">A6 460m</a></li>
+                          <li>22:11 <a href="https://www.betfair.com/exchange/plus/#/market/1.128774628" class="blue_link" target="new">A5 460m</a></li>
+                          <li>22:26 <a href="https://www.betfair.com/exchange/plus/#/market/1.128774630" class="blue_link" target="new">A4 460m</a></li>
+                      </ul>
+        </td>
+      <td class="broadcasts">
+        <ul>
+
+                        <li>
+                                                <a href="http://livevideo.betfair.com/Default.do?mi=128774608" class="blue_link" target="new">Betfair Live Video</a>
+                                                        </li>
+
+                        <li>
+                              RP Greyhound TV
+                                        </li>
+                                          </ul>
+      </td>
+      <td class="bet_now">
+
+            <a href="https://www.betfair.com/exchange/plus/#/market/1.128774608" class="smaller_betfair_link" title="Bet Now" target="new">Bet&nbspNow</a>
+
+              </td>
+      <td class="in_play"></td>
+    </tr>
+
+    <tr class="odd ">
+      <td class="time">19:45</td>
+      <td class="sport">Soccer</td>
+      <td class="event">          <a href="https://www.betfair.com/exchange/plus/#/market/1.128674088" class="blue_link" target="new">English Soccer - League One - Coventry v Sheff Utd</a>
+        </td>
+      <td class="broadcasts">
+        <ul>
+
+                        <li>
+                              Sky Sports 1
+                                        </li>
+                                          </ul>
+      </td>
+      <td class="bet_now">
+
+            <a href="https://www.betfair.com/exchange/plus/#/market/1.128674088" class="smaller_betfair_link" title="Bet Now" target="new">Bet&nbspNow</a>
+
+              </td>
+      <td class="in_play"><img alt="In-Play" src="/images/img-inplay-green.png?1465385584"></td>
+    </tr>
+
+    <tr class="even ">
+      <td class="time">19:45</td>
+      <td class="sport">Basketball</td>
+      <td class="event">          <a href="https://www.betfair.com/exchange/plus/#/market/1.128750434" class="blue_link" target="new">Turkish Airlines Euroleague Basketball - Brose Baskets v Anadolu Efes</a>
+        </td>
+      <td class="broadcasts">
+        <ul>
+
+                        <li>
+                                                <a href="http://livevideo.betfair.com/Default.do?mi=128750434" class="blue_link" target="new">Betfair Live Video</a>
+                                                        </li>
+                                          </ul>
+      </td>
+      <td class="bet_now">
+
+            <a href="https://www.betfair.com/exchange/plus/#/market/1.128750434" class="smaller_betfair_link" title="Bet Now" target="new">Bet&nbspNow</a>
+
+              </td>
+      <td class="in_play"></td>
+    </tr>
+
+    <tr class="odd ">
+      <td class="time">19:45</td>
+      <td class="sport">Rugby Union</td>
+      <td class="event">          <a href="https://www.betfair.com/exchange/plus/#/market/1.128767611" class="blue_link" target="new">European Challenge Cup - Bath v Cardiff Blues</a>
+        </td>
+      <td class="broadcasts">
+        <ul>
+
+                        <li>
+                              Sky Sports 2
+                                        </li>
+                                          </ul>
+      </td>
+      <td class="bet_now">
+
+            <a href="https://www.betfair.com/exchange/plus/#/market/1.128767611" class="smaller_betfair_link" title="Bet Now" target="new">Bet&nbspNow</a>
+
+              </td>
+      <td class="in_play"><img alt="In-Play" src="/images/img-inplay-green.png?1465385584"></td>
+    </tr>
+
+    <tr class="even ">
+      <td class="time">20:00</td>
+      <td class="sport">Snooker</td>
+      <td class="event">          <a href="https://www.betfair.com/exchange/plus/#/market/1.128791693" class="blue_link" target="new">Scottish Open 2016 - Mark Allen v Ronnie O'Sullivan</a>
+        </td>
+      <td class="broadcasts">
+        <ul>
+
+                        <li>
+                                                <a href="http://livevideo.betfair.com/Default.do?mi=128791693" class="blue_link" target="new">Betfair Live Video</a>
+                                                        </li>
+
+                        <li>
+                              Eurosport 1
+                                        </li>
+                                          </ul>
+      </td>
+      <td class="bet_now">
+
+            <a href="https://www.betfair.com/exchange/plus/#/market/1.128791693" class="smaller_betfair_link" title="Bet Now" target="new">Bet&nbspNow</a>
+
+              </td>
+      <td class="in_play"><img alt="In-Play" src="/images/img-inplay-green.png?1465385584"></td>
+    </tr>
+
+    <tr class="odd ">
+      <td class="time">20:00</td>
+      <td class="sport">Snooker</td>
+      <td class="event">          <a href="https://www.betfair.com/exchange/plus/#/market/1.128794043" class="blue_link" target="new">Scottish Open 2016 - Dominic Dale v John Higgins</a>
+        </td>
+      <td class="broadcasts">
+        <ul>
+
+                        <li>
+                                                <a href="http://livevideo.betfair.com/Default.do?mi=128794043" class="blue_link" target="new">Betfair Live Video</a>
+                                                        </li>
+                                          </ul>
+      </td>
+      <td class="bet_now">
+
+            <a href="https://www.betfair.com/exchange/plus/#/market/1.128794043" class="smaller_betfair_link" title="Bet Now" target="new">Bet&nbspNow</a>
+
+              </td>
+      <td class="in_play"><img alt="In-Play" src="/images/img-inplay-green.png?1465385584"></td>
+    </tr>
+
+    <tr class="even ">
+      <td class="time">20:30</td>
+      <td class="sport">Soccer</td>
+      <td class="event">          <a href="https://www.betfair.com/exchange/plus/#/market/1.128674345" class="blue_link" target="new">Portuguese Soccer - Primeira Liga - Porto v Maritimo</a>
+        </td>
+      <td class="broadcasts">
+        <ul>
+
+                        <li>
+                                                <a href="http://livevideo.betfair.com/Default.do?mi=128674345" class="blue_link" target="new">Betfair Live Video</a>
+                                                        </li>
+                                          </ul>
+      </td>
+      <td class="bet_now">
+
+            <a href="https://www.betfair.com/exchange/plus/#/market/1.128674345" class="smaller_betfair_link" title="Bet Now" target="new">Bet&nbspNow</a>
+
+              </td>
+      <td class="in_play"><img alt="In-Play" src="/images/img-inplay-green.png?1465385584"></td>
+    </tr>
+
+    <tr class="odd ">
+      <td class="time">21:00</td>
+      <td class="sport">Darts</td>
+      <td class="event">          <a href="https://www.betfair.com/exchange/plus/#/market/1.128531266" class="blue_link" target="new">PDC World Championship - Gary Anderson v Mark Frost</a>
+        </td>
+      <td class="broadcasts">
+        <ul>
+
+                        <li>
+                              Sky Sports 3
+                                        </li>
+                                          </ul>
+      </td>
+      <td class="bet_now">
+
+            <a href="https://www.betfair.com/exchange/plus/#/market/1.128531266" class="smaller_betfair_link" title="Bet Now" target="new">Bet&nbspNow</a>
+
+              </td>
+      <td class="in_play"><img alt="In-Play" src="/images/img-inplay-green.png?1465385584"></td>
+    </tr>
+
+    <tr class="even ">
+      <td class="time">21:15</td>
+      <td class="sport">Horse Trials</td>
+      <td class="event">          London International Horse Show 2016
+        </td>
+      <td class="broadcasts">
+        <ul>
+
+                        <li>
+                              BBCi
+                                            <span>21:15 - 22:15</span>
+                          </li>
+                                          </ul>
+      </td>
+      <td class="bet_now">
+              </td>
+      <td class="in_play"></td>
+    </tr>
+
+    <tr class="odd ">
+      <td class="time">22:00</td>
+      <td class="sport">Darts</td>
+      <td class="event">          <a href="https://www.betfair.com/exchange/plus/#/market/1.128531160" class="blue_link" target="new">PDC World Championship - Michael Smith v Ricky Evans</a>
+        </td>
+      <td class="broadcasts">
+        <ul>
+
+                        <li>
+                              Sky Sports 3
+                                        </li>
+                                          </ul>
+      </td>
+      <td class="bet_now">
+
+            <a href="https://www.betfair.com/exchange/plus/#/market/1.128531160" class="smaller_betfair_link" title="Bet Now" target="new">Bet&nbspNow</a>
+
+              </td>
+      <td class="in_play"></td>
+    </tr>
+
+    <tr class="even race_meeting">
+      <td class="time">23:00</td>
+      <td class="sport">Horse Racing</td>
+      <td class="event">          <a href="#" class="toggle_race_meeting close_race_meeting blue_link">Penn (US) 15th Dec</a>
+          <ul class="race_list">
+                          <li>23:00 <a href="https://www.betfair.com/exchange/plus/#/market/1.128781300" class="blue_link" target="new">R1 6f Claim</a></li>
+                          <li>23:27 <a href="https://www.betfair.com/exchange/plus/#/market/1.128781303" class="blue_link" target="new">R2 1m1f Mdn Claim</a></li>
+                          <li>23:54 <a href="https://www.betfair.com/exchange/plus/#/market/1.128781306" class="blue_link" target="new">R3 6f Allw Claim</a></li>
+                          <li>00:22 <a href="https://www.betfair.com/exchange/plus/#/market/1.128781309" class="blue_link" target="new">R4 6f Mdn</a></li>
+                          <li>00:49 <a href="https://www.betfair.com/exchange/plus/#/market/1.128781312" class="blue_link" target="new">R5 6f Claim</a></li>
+                          <li>01:16 <a href="https://www.betfair.com/exchange/plus/#/market/1.128781315" class="blue_link" target="new">R6 6f Claim</a></li>
+                          <li>01:43 <a href="https://www.betfair.com/exchange/plus/#/market/1.128781318" class="blue_link" target="new">R7 1m Claim</a></li>
+                          <li>02:10 <a href="https://www.betfair.com/exchange/plus/#/market/1.128781321" class="blue_link" target="new">R8 1m Claim</a></li>
+                      </ul>
+        </td>
+      <td class="broadcasts">
+        <ul>
+
+                        <li>
+                              ATR
+                                        </li>
+
+                        <li>
+                                                <a href="http://livevideo.betfair.com/Default.do?mi=128781300" class="blue_link" target="new">Betfair Live Video</a>
+                                                        </li>
+                                          </ul>
+      </td>
+      <td class="bet_now">
+
+            <a href="https://www.betfair.com/exchange/plus/#/market/1.128781300" class="smaller_betfair_link" title="Bet Now" target="new">Bet&nbspNow</a>
+
+              </td>
+      <td class="in_play"></td>
+    </tr>
+
+    <tr class="odd race_meeting">
+      <td class="time">23:15</td>
+      <td class="sport">Horse Racing</td>
+      <td class="event">          <a href="#" class="toggle_race_meeting close_race_meeting blue_link">Turfway (US) 15th Dec</a>
+          <ul class="race_list">
+                          <li>23:15 <a href="https://www.betfair.com/exchange/plus/#/market/1.128781422" class="blue_link" target="new">R1 1m Allw</a></li>
+                          <li>23:44 <a href="https://www.betfair.com/exchange/plus/#/market/1.128781425" class="blue_link" target="new">R2 6f Claim</a></li>
+                          <li>00:13 <a href="https://www.betfair.com/exchange/plus/#/market/1.128781428" class="blue_link" target="new">R3 6f Claim</a></li>
+                          <li>00:42 <a href="https://www.betfair.com/exchange/plus/#/market/1.128781431" class="blue_link" target="new">R4 7f Claim</a></li>
+                          <li>01:11 <a href="https://www.betfair.com/exchange/plus/#/market/1.128781434" class="blue_link" target="new">R5 1m Allw</a></li>
+                          <li>01:40 <a href="https://www.betfair.com/exchange/plus/#/market/1.128781437" class="blue_link" target="new">R6 1m Mdn Claim</a></li>
+                          <li>02:09 <a href="https://www.betfair.com/exchange/plus/#/market/1.128781440" class="blue_link" target="new">R7 7f Claim</a></li>
+                          <li>02:38 <a href="https://www.betfair.com/exchange/plus/#/market/1.128781443" class="blue_link" target="new">R8 6f Allw Claim</a></li>
+                          <li>03:07 <a href="https://www.betfair.com/exchange/plus/#/market/1.128781446" class="blue_link" target="new">R9 1m Claim</a></li>
+                      </ul>
+        </td>
+      <td class="broadcasts">
+        <ul>
+
+                        <li>
+                              ATR
+                                        </li>
+
+                        <li>
+                                                <a href="http://livevideo.betfair.com/Default.do?mi=128781422" class="blue_link" target="new">Betfair Live Video</a>
+                                                        </li>
+                                          </ul>
+      </td>
+      <td class="bet_now">
+
+            <a href="https://www.betfair.com/exchange/plus/#/market/1.128781422" class="smaller_betfair_link" title="Bet Now" target="new">Bet&nbspNow</a>
+
+              </td>
+      <td class="in_play"></td>
+    </tr>
+
+    <tr class="even race_meeting">
+      <td class="time">23:40</td>
+      <td class="sport">Horse Racing</td>
+      <td class="event">          <a href="#" class="toggle_race_meeting close_race_meeting blue_link">DeltaD (US) 15th Dec</a>
+          <ul class="race_list">
+                          <li>23:40 <a href="https://www.betfair.com/exchange/plus/#/market/1.128781325" class="blue_link" target="new">R1 5f Mdn Claim</a></li>
+                          <li>00:07 <a href="https://www.betfair.com/exchange/plus/#/market/1.128781328" class="blue_link" target="new">R2 5f Allw</a></li>
+                          <li>00:34 <a href="https://www.betfair.com/exchange/plus/#/market/1.128781331" class="blue_link" target="new">R3 7f Mdn Claim</a></li>
+                          <li>01:01 <a href="https://www.betfair.com/exchange/plus/#/market/1.128781334" class="blue_link" target="new">R4 5f Claim</a></li>
+                          <li>01:28 <a href="https://www.betfair.com/exchange/plus/#/market/1.128781337" class="blue_link" target="new">R5 7f Mdn Claim</a></li>
+                          <li>01:56 <a href="https://www.betfair.com/exchange/plus/#/market/1.128781340" class="blue_link" target="new">R6 1m Allw</a></li>
+                          <li>02:24 <a href="https://www.betfair.com/exchange/plus/#/market/1.128781343" class="blue_link" target="new">R7 1m Claim</a></li>
+                          <li>02:52 <a href="https://www.betfair.com/exchange/plus/#/market/1.128781346" class="blue_link" target="new">R8 1m Allw</a></li>
+                          <li>03:20 <a href="https://www.betfair.com/exchange/plus/#/market/1.128781349" class="blue_link" target="new">R9 7f Claim</a></li>
+                          <li>03:47 <a href="https://www.betfair.com/exchange/plus/#/market/1.128781352" class="blue_link" target="new">R10 7f Mdn Claim</a></li>
+                      </ul>
+        </td>
+      <td class="broadcasts">
+        <ul>
+
+                        <li>
+                              ATR
+                                        </li>
+
+                        <li>
+                                                <a href="http://livevideo.betfair.com/Default.do?mi=128781325" class="blue_link" target="new">Betfair Live Video</a>
+                                                        </li>
+                                          </ul>
+      </td>
+      <td class="bet_now">
+
+            <a href="https://www.betfair.com/exchange/plus/#/market/1.128781325" class="smaller_betfair_link" title="Bet Now" target="new">Bet&nbspNow</a>
+
+              </td>
+      <td class="in_play"></td>
+    </tr>
+  </table>
+
+
+</div>
+
+<div id="bottom_bookend">
+    <h2>Thursday 15th December</h2>
+  <div class="previous_and_next_day">
+
+    <a href="/english-uk/tv/2016-12-14#bottom_of_page"> « Previous day</a>
+
+  <span>&nbsp;&nbsp;&nbsp;</span>
+
+    <a href="/english-uk/tv/2016-12-16#top_of_page">Next day » </a>
+
+</div>
+
+</div>
+
+      <a name="bottom_of_page"></a>
+      <div id="footer">
+  <div id="locale_links">
+    <a href="/balgarsci/tv" class="locale_link">български</a><span class="pipe">|</span><a href="/cesky/tv" class="locale_link">Česky</a><span class="pipe">|</span><a href="/dansk/tv" class="locale_link">Dansk</a><span class="pipe">|</span><a href="/deutsch/tv" class="locale_link">Deutsch</a><span class="pipe">|</span><a href="/english-asia/tv" class="locale_link">English - Asia</a><span class="pipe">|</span><a href="/english-aus-nz/tv" class="locale_link">English - AUS & NZ</a><span class="pipe">|</span><a href="/english-canada/tv" class="locale_link">English - Canada</a><span class="pipe">|</span><a href="/english-ire/tv" class="locale_link">English - IRE</a><span class="pipe">|</span><a href="/english-uk/tv" class="locale_link">English - UK</a><span class="pipe">|</span><a href="/espanol/tv" class="locale_link">Español</a><span class="pipe">|</span><a href="/francais/tv" class="locale_link">Français</a><span class="pipe">|</span><a href="/hellenika/tv" class="locale_link">Ελληνικά</a><span class="pipe">|</span><a href="/italiano/tv" class="locale_link">Italiano</a><span class="pipe">|</span><a href="/norsk/tv" class="locale_link">Norsk</a><span class="pipe">|</span><a href="/polski/tv" class="locale_link">Polski</a><span class="pipe">|</span><a href="/portugues/tv" class="locale_link">Português</a><span class="pipe">|</span><a href="/russkij/tv" class="locale_link">Русский</a><span class="pipe">|</span><a href="/suomi/tv" class="locale_link">Suomi</a><span class="pipe">|</span><a href="/svenska/tv" class="locale_link">Svenska</a><span class="pipe">|</span><a href="/turkce/tv" class="locale_link">Türkçe</a><span class="pipe">|</span><a href="/zhong/tv" class="locale_link">简体中文</a><span class="pipe">|</span><a href="/zhong_tw/tv" class="locale_link">繁體中文</a>
+  </div>
+
+  <p class="disclaimer">The list is not intended to be exhaustive and Betfair cannot be held accountable for any inaccuracies in the content</p>
+</div>
+
+    </div>
+  </div>
+
+
+    <!-- Google analytics and speed trap: -->
+
+<!-- analytics for web -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create','UA-43334570-1','betfair.com');ga('send','pageview');
+</script>
+
+<!-- analytics for mobile -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create','UA-43334570-2','betfair.com');ga('send','pageview');
+</script>
+
+<!--BEGIN_EXCLUDE-->
+<script type="text/javascript" src="http://www.betfair.com/SpeedTrapScript.do"></script>
+<!--END_EXCLUDE-->
+
+<!-- Australian analytics stuff: -->
+
+
+
+</body>
+</html>

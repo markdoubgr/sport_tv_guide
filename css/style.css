@@ -1,0 +1,18 @@
+body {
+  background-color: lightgrey;
+}
+table#match-table {
+    width: 100%;
+}
+.bbci {
+  background-color: red;
+  color: white;
+}
+.sport-soccer {
+  background-color: green;
+  color: white;
+}
+.competition-nfl-matches {
+  background-color: blue;
+  color: white;
+}
