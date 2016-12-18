@@ -25,6 +25,6 @@ td.competition-nfl-matches {
   color: white;
 }
 
-.filter-sport.visible, .filter-channel.visible {
+.filter-sport.visible, .filter-channel.visible, .filter-competition.visible {
   background-color: grey;
 }

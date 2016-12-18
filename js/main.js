@@ -48,14 +48,14 @@ function createEventsArray(rowsReturned) {
 function createEventsTable(events) {
   var tableStr = "";
   $.each(events, function (index, evt) {
-    var sportClass = "sport-" + evt.sport.replace(/ /g, "-").toLowerCase();
-    var competitionClass = " competition-" + evt.evt.competition.replace(/ /g, "-").toLowerCase();
+    var sportClass = "sport-" + evt.sport.replace(/[ !\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '-').toLowerCase();
+    var competitionClass = "competition-" + evt.evt.competition.replace(/[ !\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '-').toLowerCase();
     if (competitionClass == "competition-") competitionClass = "competition-none";
     var channelClass = "";
     $.each(evt.channels, function (ind, channel) {
-      channelClass += " channel-" + channel.replace(/ /g, "-").toLowerCase();
+      channelClass += "channel-" + channel.replace(/[ !\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '-').toLowerCase();
     });
-    tableStr += "<tr class='match-tr "+ sportClass + competitionClass + channelClass +"'>\
+    tableStr += "<tr class='match-tr "+ sportClass + " " + competitionClass + " " + channelClass +"'>\
     <td class='match-time'>"+ evt.time +"</td>\
     <td class='match-sport "+ sportClass +"'>"+ evt.sport +"</td>\
     <td class='match-evt'><span class='match-evt-match'>"+ evt.evt.match +"</span>\
@@ -63,7 +63,7 @@ function createEventsTable(events) {
     <td class='match-channels'>";
     var channelsStr = "";
     $.each(evt.channels, function (ind, channel) {
-      channelsStr += "<span class='"+ channel.replace(/ /g, "-").toLowerCase() +"'>"+ channel +"</span>"
+      channelsStr += "<span class='"+ channel.replace(/[ !\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '-').toLowerCase() +"'>"+ channel +"</span>"
     });
     tableStr += channelsStr;
     tableStr += "</td></tr>";
@@ -86,7 +86,7 @@ function refreshFilters(events) {
   $.each(events, function (index, event) {
     if (sports.indexOf(event.sport) < 0) {
       sports.push(event.sport);
-      var sportClass = "sport-" + event.sport.replace(/ /g, "-").toLowerCase();
+      var sportClass = "sport-" + event.sport.replace(/[ !\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '-').toLowerCase();
       $("#sport-filters").append("<span class='filter filter-sport filter-"+ sportClass +"'>" + event.sport + "</span> | ");
       $(".filter-" + sportClass).off("click");
       $(".filter-" + sportClass).on("click", function (ev) {
@@ -104,7 +104,7 @@ function refreshFilters(events) {
     $.each(event.channels, function (ind, channel) {
       if (channels.indexOf(channel) < 0) {
         channels.push(channel);
-        var channelClass = "channel-" + channel.replace(/ /g, "-").toLowerCase();
+        var channelClass = "channel-" + channel.replace(/[ !\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '-').toLowerCase();
         $("#channel-filters").append("<span class='filter filter-channel filter-"+ channelClass +"'>" + channel + "</span> - ");
         $(".filter-" + channelClass).off("click");
         $(".filter-" + channelClass).on("click", function (ev) {
@@ -122,10 +122,10 @@ function refreshFilters(events) {
 
     if (competitions.indexOf( event.evt.competition) < 0) {
       competitions.push( event.evt.competition);
-      var competitionClass = "competition-" + event.evt.competition.replace(/ /g, "-").toLowerCase();
+      var competitionClass = "competition-" + event.evt.competition.replace(/[ !\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '-').toLowerCase();
       if (competitionClass == "competition-") competitionClass = "competition-none";
       var competitionString = event.evt.competition;
-      if (competitionClass == "") competitionString = "unknown";
+      if (competitionString == "") competitionString = "unknown";
       $("#competition-filters").append("<span class='filter filter-competition filter-"+ competitionClass +"'>" +  competitionString + "</span> | ");
       $(".filter-" + competitionClass).off("click");
       $(".filter-" + competitionClass).on("click", function (ev) {
