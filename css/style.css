@@ -1,18 +1,26 @@
 body {
   background-color: lightgrey;
 }
+
 table#match-table {
     width: 100%;
 }
-.bbci {
+
+td .bbc-2, td .bbc-1, td .bbci {
   background-color: red;
   color: white;
 }
-.sport-soccer {
+
+td.sport-soccer {
   background-color: green;
   color: white;
 }
-.competition-nfl-matches {
+
+td.competition-nfl-matches {
   background-color: blue;
   color: white;
+}
+
+.filter-sport.visible {
+  background-color: grey;
 }

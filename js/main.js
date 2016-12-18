@@ -54,9 +54,9 @@ function createEventsTable(events) {
     $.each(evt.channels, function (ind, channel) {
       channelClass += " channel-" + channel.replace(/ /g, "-").toLowerCase();
     });
-    tableStr += "<tr class='"+ sportClass + competitionClass + channelClass +"'>\
+    tableStr += "<tr class='match-tr "+ sportClass + competitionClass + channelClass +"'>\
     <td class='match-time'>"+ evt.time +"</td>\
-    <td class='match-sport sport-"+ sportClass +"'>"+ evt.sport +"</td>\
+    <td class='match-sport "+ sportClass +"'>"+ evt.sport +"</td>\
     <td class='match-evt'><span class='match-evt-match'>"+ evt.evt.match +"</span>\
     <span class='match-evt-competition competition-"+  +"'>"+ evt.evt.competition +"</td>\
     <td class='match-channels'>";
@@ -85,38 +85,52 @@ function refreshFilters(events) {
     if (sports.indexOf(event.sport) < 0) {
       sports.push(event.sport);
       var sportClass = "sport-" + event.sport.replace(/ /g, "-").toLowerCase();
-      $("#sport-filters").append("<span class='filter visible filter-"+ sportClass +"'>" + event.sport + "</span> | ");
+      $("#sport-filters").append("<span class='filter filter-sport filter-"+ sportClass +"'>" + event.sport + "</span> | ");
       $(".filter-" + sportClass).off("click");
       $(".filter-" + sportClass).on("click", function (ev) {
         if ($(ev.target).hasClass("visible")) {
           $(ev.target).removeClass("visible")
-          $("." + sportClass).hide();
+          $("."+sportClass).removeClass("sport-visible");
         } else {
           $(ev.target).addClass("visible")
-          $("." + sportClass).show();
+          $("."+sportClass).addClass("sport-visible");
         }
+        showHideMatches();
       });
     }
+
     $.each(event.channels, function (ind, channel) {
       if (channels.indexOf(channel) < 0) {
         channels.push(channel);
         var channelClass = "channel-" + channel.replace(/ /g, "-").toLowerCase();
-        $("#channel-filters").append("<span class='filter visible filter-"+ channelClass +"'>" + channel + "</span> - ");
+        $("#channel-filters").append("<span class='filter filter-channel filter-"+ channelClass +"'>" + channel + "</span> - ");
         $(".filter-" + channelClass).off("click");
         $(".filter-" + channelClass).on("click", function (ev) {
           if ($(ev.target).hasClass("visible")) {
             $(ev.target).removeClass("visible")
-            $("." + channelClass).hide();
           } else {
             $(ev.target).addClass("visible")
-            $("." + channelClass).show();
           }
+          showHideMatches();
         });
       }
-
     })
+
   });
 }
+
+function showHideMatches() {
+  var matchRows = $(".match-tr");
+  matchRows.show();
+  if ($(".filter-sport.visible").length > 0) {
+    $.each(matchRows, function (i, row) {
+      if (!$(row).hasClass("sport-visible")) {
+        $(row).hide();
+      }
+    })
+  }
+}
+
 
 function filterTable() {
   var input, filter, table, tr, td, i;
