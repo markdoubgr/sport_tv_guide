@@ -1,7 +1,8 @@
 
-var excludedSports = ["Horse Racing"];
-var enabledFilters = ["channels", "competitions", "sports"];
-// var enabledFilters = ["channels", "sports"];
+var excludedSports = ["Horse Racing", "Greyhound Racing"];
+var enabledFilters = ["channels", "sports"];
+// var excludedSports = [];
+// var enabledFilters = ["channels", "competitions", "sports"];
 
 $(".today-select").click(function (ev) { loadMatches(0) });
 $(".tomorrow-select").click(function (ev) { loadMatches(1) });
@@ -63,8 +64,8 @@ function createEventsTable(events) {
       tableStr += "<tr class='match-tr "+ sportClass + " " + competitionClass + " " + channelClass +"'>\
       <td class='match-time'>"+ evt.time +"</td>\
       <td class='match-sport "+ sportClass +"'>"+ evt.sport +"</td>\
-      <td class='match-evt'><span class='match-evt-match'>"+ evt.evt.match +"</span>\
-      <span class='match-evt-competition "+ competitionClass +"'>"+ evt.evt.competition +"</span></td>\
+      <td class='match-evt'><div class='match-evt-match'>"+ evt.evt.match +"</div>\
+      <div class='match-evt-competition "+ competitionClass +"'>"+ evt.evt.competition +"</div></td>\
       <td class='match-channels'>";
       var channelsStr = "";
       $.each(evt.channels, function (ind, channel) {
@@ -90,69 +91,71 @@ function refreshFilters(events) {
   var sports = [];
   var competitions = [];
   $.each(events, function (index, event) {
+    if (excludedSports.indexOf(event.sport) < 0) {
 
-    if (enabledFilters.indexOf("sports") >= 0) {
-      if (sports.indexOf(event.sport) < 0) {
-        sports.push(event.sport);
-        var sportClass = "sport-" + event.sport.replace(/[ !\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '-').toLowerCase();
-        $("#sport-filters").append("<span class='filter filter-sport filter-"+ sportClass +"'>" + event.sport + "</span> ");
-        $(".filter-" + sportClass).off("click");
-        $(".filter-" + sportClass).on("click", function (ev) {
-          if ($(ev.target).hasClass("visible")) {
-            $(ev.target).removeClass("visible")
-            $("."+sportClass).removeClass("sport-visible");
-          } else {
-            $(ev.target).addClass("visible")
-            $("."+sportClass).addClass("sport-visible");
-          }
-          showHideMatches();
-        });
-      }
-    }
-
-    if (enabledFilters.indexOf("channels") >= 0) {
-      $.each(event.channels, function (ind, channel) {
-        if (channels.indexOf(channel) < 0) {
-          channels.push(channel);
-          var channelClass = "channel-" + channel.replace(/[ !\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '-').toLowerCase();
-          $("#channel-filters").append("<span class='filter filter-channel filter-"+ channelClass +"'>" + channel + "</span> ");
-          $(".filter-" + channelClass).off("click");
-          $(".filter-" + channelClass).on("click", function (ev) {
+      if (enabledFilters.indexOf("sports") >= 0) {
+        if (sports.indexOf(event.sport) < 0) {
+          sports.push(event.sport);
+          var sportClass = "sport-" + event.sport.replace(/[ !\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '-').toLowerCase();
+          $("#sport-filters").append("<span class='filter filter-sport filter-"+ sportClass +"'>" + event.sport + "</span> ");
+          $(".filter-" + sportClass).off("click");
+          $(".filter-" + sportClass).on("click", function (ev) {
             if ($(ev.target).hasClass("visible")) {
               $(ev.target).removeClass("visible")
-              $("."+channelClass).removeClass("channel-visible");
+              $("."+sportClass).removeClass("sport-visible");
             } else {
               $(ev.target).addClass("visible")
-              $("."+channelClass).addClass("channel-visible");
+              $("."+sportClass).addClass("sport-visible");
             }
             showHideMatches();
           });
         }
-      })
-    }
-
-    if (enabledFilters.indexOf("competitions") >= 0) {
-      if (competitions.indexOf( event.evt.competition) < 0) {
-        competitions.push( event.evt.competition);
-        var competitionClass = "competition-" + event.evt.competition.replace(/[ !\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '-').toLowerCase();
-        if (competitionClass == "competition-") competitionClass = "competition-none";
-        var competitionString = event.evt.competition;
-        if (competitionString == "") competitionString = "unknown";
-        $("#competition-filters").append("<span class='filter filter-competition filter-"+ competitionClass +"'>" +  competitionString + "</span> ");
-        $(".filter-" + competitionClass).off("click");
-        $(".filter-" + competitionClass).on("click", function (ev) {
-          if ($(ev.target).hasClass("visible")) {
-            $(ev.target).removeClass("visible")
-            $("."+competitionClass).removeClass("competition-visible");
-          } else {
-            $(ev.target).addClass("visible")
-            $("."+competitionClass).addClass("competition-visible");
-          }
-          showHideMatches();
-        });
       }
-    }
 
+      if (enabledFilters.indexOf("channels") >= 0) {
+        $.each(event.channels, function (ind, channel) {
+          if (channels.indexOf(channel) < 0) {
+            channels.push(channel);
+            var channelClass = "channel-" + channel.replace(/[ !\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '-').toLowerCase();
+            $("#channel-filters").append("<span class='filter filter-channel filter-"+ channelClass +"'>" + channel + "</span> ");
+            $(".filter-" + channelClass).off("click");
+            $(".filter-" + channelClass).on("click", function (ev) {
+              if ($(ev.target).hasClass("visible")) {
+                $(ev.target).removeClass("visible")
+                $("."+channelClass).removeClass("channel-visible");
+              } else {
+                $(ev.target).addClass("visible")
+                $("."+channelClass).addClass("channel-visible");
+              }
+              showHideMatches();
+            });
+          }
+        })
+      }
+
+      if (enabledFilters.indexOf("competitions") >= 0) {
+        if (competitions.indexOf( event.evt.competition) < 0) {
+          competitions.push( event.evt.competition);
+          var competitionClass = "competition-" + event.evt.competition.replace(/[ !\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '-').toLowerCase();
+          if (competitionClass == "competition-") competitionClass = "competition-none";
+          var competitionString = event.evt.competition;
+          if (competitionString == "") competitionString = "unknown";
+          $("#competition-filters").append("<span class='filter filter-competition filter-"+ competitionClass +"'>" +  competitionString + "</span> ");
+          $(".filter-" + competitionClass).off("click");
+          $(".filter-" + competitionClass).on("click", function (ev) {
+            if ($(ev.target).hasClass("visible")) {
+              $(ev.target).removeClass("visible")
+              $("."+competitionClass).removeClass("competition-visible");
+            } else {
+              $(ev.target).addClass("visible")
+              $("."+competitionClass).addClass("competition-visible");
+            }
+            showHideMatches();
+          });
+        }
+      }
+
+    }
   });
   if (enabledFilters.indexOf("sports") >= 0) {
     var $filterContainer = $('#sport-filters');
