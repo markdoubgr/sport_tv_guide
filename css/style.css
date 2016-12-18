@@ -1,9 +1,22 @@
 body {
-  background-color: lightgrey;
+  background-color: white;
+  font-family: sans-serif;
+  font-size: 14px;
 }
 
-table#match-table {
+span.filter {
+  padding-right: 10px;
+}
+div#match-list {
     width: 100%;
+}
+table#match-table {
+    width: 1000px;
+    margin: auto;
+}
+
+td {
+    padding: 5px;
 }
 
 td .match-evt-competition {
