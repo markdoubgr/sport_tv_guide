@@ -6,6 +6,10 @@ table#match-table {
     width: 100%;
 }
 
+td .match-evt-competition {
+  font-size: 0.7em;
+}
+
 td .bbc-2, td .bbc-1, td .bbci {
   background-color: red;
   color: white;
@@ -21,6 +25,6 @@ td.competition-nfl-matches {
   color: white;
 }
 
-.filter-sport.visible {
+.filter-sport.visible, .filter-channel.visible {
   background-color: grey;
 }

@@ -49,7 +49,7 @@ function createEventsTable(events) {
   var tableStr = "";
   $.each(events, function (index, evt) {
     var sportClass = "sport-" + evt.sport.replace(/ /g, "-").toLowerCase();
-    var competitionClass = " competition" + evt.evt.competition.replace(/ /g, "-").toLowerCase();
+    var competitionClass = " competition-" + evt.evt.competition.replace(/ /g, "-").toLowerCase();
     var channelClass = "";
     $.each(evt.channels, function (ind, channel) {
       channelClass += " channel-" + channel.replace(/ /g, "-").toLowerCase();
@@ -58,7 +58,7 @@ function createEventsTable(events) {
     <td class='match-time'>"+ evt.time +"</td>\
     <td class='match-sport "+ sportClass +"'>"+ evt.sport +"</td>\
     <td class='match-evt'><span class='match-evt-match'>"+ evt.evt.match +"</span>\
-    <span class='match-evt-competition competition-"+  +"'>"+ evt.evt.competition +"</td>\
+    <span class='match-evt-competition "+ competitionClass +"'>"+ evt.evt.competition +"</span></td>\
     <td class='match-channels'>";
     var channelsStr = "";
     $.each(evt.channels, function (ind, channel) {
@@ -108,8 +108,10 @@ function refreshFilters(events) {
         $(".filter-" + channelClass).on("click", function (ev) {
           if ($(ev.target).hasClass("visible")) {
             $(ev.target).removeClass("visible")
+            $("."+sportClass).removeClass("channel-visible");
           } else {
             $(ev.target).addClass("visible")
+            $("."+sportClass).addClass("channel-visible");
           }
           showHideMatches();
         });
@@ -125,6 +127,13 @@ function showHideMatches() {
   if ($(".filter-sport.visible").length > 0) {
     $.each(matchRows, function (i, row) {
       if (!$(row).hasClass("sport-visible")) {
+        $(row).hide();
+      }
+    })
+  }
+  if ($(".filter-channel.visible").length > 0) {
+    $.each(matchRows, function (i, row) {
+      if (!$(row).hasClass("channel-visible")) {
         $(row).hide();
       }
     })
