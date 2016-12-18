@@ -48,7 +48,7 @@ function createEventsArray(rowsReturned) {
 function createEventsTable(events) {
   var tableStr = "";
   $.each(events, function (index, evt) {
-    var sportClass = "sport" + evt.sport.replace(/ /g, "-").toLowerCase();
+    var sportClass = "sport-" + evt.sport.replace(/ /g, "-").toLowerCase();
     var competitionClass = " competition" + evt.evt.competition.replace(/ /g, "-").toLowerCase();
     var channelClass = "";
     $.each(evt.channels, function (ind, channel) {
@@ -84,8 +84,8 @@ function refreshFilters(events) {
   $.each(events, function (index, event) {
     if (sports.indexOf(event.sport) < 0) {
       sports.push(event.sport);
-      var sportClass = "sport" + event.sport.replace(/ /g, "-").toLowerCase();
-      $("#sport-filters").append("<div class='filter visible filter-"+ sportClass +"'>" + event.sport + "</div>");
+      var sportClass = "sport-" + event.sport.replace(/ /g, "-").toLowerCase();
+      $("#sport-filters").append("<span class='filter visible filter-"+ sportClass +"'>" + event.sport + "</span> | ");
       $(".filter-" + sportClass).off("click");
       $(".filter-" + sportClass).on("click", function (ev) {
         if ($(ev.target).hasClass("visible")) {
@@ -97,7 +97,24 @@ function refreshFilters(events) {
         }
       });
     }
-    // $("#sport-filters")
+    $.each(event.channels, function (ind, channel) {
+      if (channels.indexOf(channel) < 0) {
+        channels.push(channel);
+        var channelClass = "channel-" + channel.replace(/ /g, "-").toLowerCase();
+        $("#channel-filters").append("<span class='filter visible filter-"+ channelClass +"'>" + channel + "</span> - ");
+        $(".filter-" + channelClass).off("click");
+        $(".filter-" + channelClass).on("click", function (ev) {
+          if ($(ev.target).hasClass("visible")) {
+            $(ev.target).removeClass("visible")
+            $("." + channelClass).hide();
+          } else {
+            $(ev.target).addClass("visible")
+            $("." + channelClass).show();
+          }
+        });
+      }
+
+    })
   });
 }
 
