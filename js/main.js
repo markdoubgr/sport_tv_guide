@@ -50,6 +50,7 @@ function createEventsTable(events) {
   $.each(events, function (index, evt) {
     var sportClass = "sport-" + evt.sport.replace(/ /g, "-").toLowerCase();
     var competitionClass = " competition-" + evt.evt.competition.replace(/ /g, "-").toLowerCase();
+    if (competitionClass == "competition-") competitionClass = "competition-none";
     var channelClass = "";
     $.each(evt.channels, function (ind, channel) {
       channelClass += " channel-" + channel.replace(/ /g, "-").toLowerCase();
@@ -81,6 +82,7 @@ function getDateStr(daysAfter) {
 function refreshFilters(events) {
   var channels = [];
   var sports = [];
+  var competitions = [];
   $.each(events, function (index, event) {
     if (sports.indexOf(event.sport) < 0) {
       sports.push(event.sport);
@@ -118,6 +120,26 @@ function refreshFilters(events) {
       }
     })
 
+    if (competitions.indexOf( event.evt.competition) < 0) {
+      competitions.push( event.evt.competition);
+      var competitionClass = "competition-" + event.evt.competition.replace(/ /g, "-").toLowerCase();
+      if (competitionClass == "competition-") competitionClass = "competition-none";
+      var competitionString = event.evt.competition;
+      if (competitionClass == "") competitionString = "unknown";
+      $("#competition-filters").append("<span class='filter filter-competition filter-"+ competitionClass +"'>" +  competitionString + "</span> | ");
+      $(".filter-" + competitionClass).off("click");
+      $(".filter-" + competitionClass).on("click", function (ev) {
+        if ($(ev.target).hasClass("visible")) {
+          $(ev.target).removeClass("visible")
+          $("."+competitionClass).removeClass("competition-visible");
+        } else {
+          $(ev.target).addClass("visible")
+          $("."+competitionClass).addClass("competition-visible");
+        }
+        showHideMatches();
+      });
+    }
+
   });
 }
 
@@ -134,6 +156,13 @@ function showHideMatches() {
   if ($(".filter-channel.visible").length > 0) {
     $.each(matchRows, function (i, row) {
       if (!$(row).hasClass("channel-visible")) {
+        $(row).hide();
+      }
+    })
+  }
+  if ($(".filter-competition.visible").length > 0) {
+    $.each(matchRows, function (i, row) {
+      if (!$(row).hasClass("competition-visible")) {
         $(row).hide();
       }
     })
