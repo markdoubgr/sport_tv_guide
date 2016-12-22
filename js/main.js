@@ -1,7 +1,9 @@
 
 var excludedSports = ["Horse Racing", "Greyhound Racing"];
+var excludedChannels = ["Betfair Live Video"];
 var enabledFilters = ["channels", "sports"];
 // var excludedSports = [];
+// var excludedChannels = [];
 // var enabledFilters = ["channels", "competitions", "sports"];
 
 $(".today-select").click(function (ev) { loadMatches(0) });
@@ -36,16 +38,27 @@ function createEventsArray(rowsReturned) {
     var event = {};
     event.match = evtArray.pop();
     event.competition = evtArray.join(" - ");
-    events[index] = {
+    var newEvent = {
       time: $(row).find(".time").text().trim(),
       sport: $(row).find(".sport").text().trim(),
       evt: event,
+      channels: []
     };
-    events[index].channels = [];
+    // events[index] = {
+    //   time: $(row).find(".time").text().trim(),
+    //   sport: $(row).find(".sport").text().trim(),
+    //   evt: event,
+    // };
     var broadcastList = $(row).find(".broadcasts li");
+    // var i = 0;
     $.each(broadcastList, function( ind, broadcast ) {
-      events[index].channels[ind] = $(broadcast).children().remove("span").end().text().trim();
+      var channel = $(broadcast).children().remove("span").end().text().trim();
+      if (excludedChannels.indexOf(channel) < 0) {
+        newEvent.channels.push(channel);
+        // i++;
+      }
     });
+    if (newEvent.channels.length > 0) events.push(newEvent);
   });
   return events;
 }
@@ -69,7 +82,9 @@ function createEventsTable(events) {
       <td class='match-channels'>";
       var channelsStr = "";
       $.each(evt.channels, function (ind, channel) {
-        channelsStr += "<span class='"+ channel.replace(/[ !\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '-').toLowerCase() +"'>"+ channel +"</span>"
+        var channelImg = channel.replace(/[ !\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '-').toLowerCase();
+        // var channelImg= "<span class='"+ channel.replace(/[ !\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '-').toLowerCase() +"'>"+ channel +"</span>"
+        channelsStr +="<span class='"+ channelImg +"'><img src='img/" + channelImg + ".jpg' alt='" + channel + "'></span>";
       });
       tableStr += channelsStr;
       tableStr += "</td></tr>";
