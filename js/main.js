@@ -12,7 +12,6 @@ $(".two-select").click(function (ev) { loadMatches(2) });
 $(".three-select").click(function (ev) { loadMatches(3) });
 loadMatches(0);
 
-// fetch matches from bet... using php
 function loadMatches(daysAfter) {
   $("#loading").show();
   var date = getDateStr(daysAfter);
@@ -22,7 +21,7 @@ function loadMatches(daysAfter) {
     var events = createEventsArray(rowsReturned);
     var eventsTable = createEventsTable(events);
     $("#loading").hide();
-    $("#match-table").append(eventsTable);
+    $("#match-table").html(eventsTable);
     refreshFilters(events);
   });
 }
@@ -44,18 +43,11 @@ function createEventsArray(rowsReturned) {
       evt: event,
       channels: []
     };
-    // events[index] = {
-    //   time: $(row).find(".time").text().trim(),
-    //   sport: $(row).find(".sport").text().trim(),
-    //   evt: event,
-    // };
     var broadcastList = $(row).find(".broadcasts li");
-    // var i = 0;
     $.each(broadcastList, function( ind, broadcast ) {
       var channel = $(broadcast).children().remove("span").end().text().trim();
       if (excludedChannels.indexOf(channel) < 0) {
         newEvent.channels.push(channel);
-        // i++;
       }
     });
     if (newEvent.channels.length > 0) events.push(newEvent);
@@ -105,6 +97,10 @@ function refreshFilters(events) {
   var channels = [];
   var sports = [];
   var competitions = [];
+
+  $("#sport-filters").html("");
+  $("#competition-filters").html("");
+  $("#channel-filters").html("");
   $.each(events, function (index, event) {
     if (excludedSports.indexOf(event.sport) < 0) {
 
@@ -229,22 +225,3 @@ function showHideMatches() {
     })
   }
 }
-
-
-// function filterTable() {
-//   var input, filter, table, tr, td, i;
-//   input = document.getElementById("myInput");
-//   filter = input.value.toUpperCase();
-//   table = document.getElementById("myTable");
-//   tr = table.getElementsByTagName("tr");
-//   for (i = 0; i < tr.length; i++) {
-//     td = tr[i].getElementsByTagName("td")[0];
-//     if (td) {
-//       if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-//         tr[i].style.display = "";
-//       } else {
-//         tr[i].style.display = "none";
-//       }
-//     }
-//   }
-// }
