@@ -10,6 +10,25 @@ $(".today-select").click(function (ev) { loadMatches(0) });
 $(".tomorrow-select").click(function (ev) { loadMatches(1) });
 $(".two-select").click(function (ev) { loadMatches(2) });
 $(".three-select").click(function (ev) { loadMatches(3) });
+$("#close-filters").click(function (ev) {
+  $("#filter-containers").hide();
+  $("#sport-filters").hide();
+  $("#channel-filters").hide();
+  $("#competition-filters").hide();
+});
+$("#sport-filter-btn").click(function (ev) {
+  $("#filter-containers").show();
+  $("#sport-filters").show();
+  $("#channel-filters").hide();
+  $("#competition-filters").hide();
+});
+$("#channel-filter-btn").click(function (ev) {
+  $("#filter-containers").show();
+  $("#sport-filters").hide();
+  $("#channel-filters").show();
+  $("#competition-filters").hide();
+});
+
 loadMatches(0);
 
 function loadMatches(daysAfter) {
@@ -97,27 +116,42 @@ function refreshFilters(events) {
   var channels = [];
   var sports = [];
   var competitions = [];
+  var selectedChannels = JSON.parse(localStorage.getItem("channel-filters")) || [];
+  var selectedSports = JSON.parse(localStorage.getItem("sport-filters")) || [];
+  var selectedCompetitions = JSON.parse(localStorage.getItem("competition-filters")) || [];
 
   $("#sport-filters").html("");
   $("#competition-filters").html("");
   $("#channel-filters").html("");
   $.each(events, function (index, event) {
-    if (excludedSports.indexOf(event.sport) < 0) {
 
+    if (excludedSports.indexOf(event.sport) < 0) {
       if (enabledFilters.indexOf("sports") >= 0) {
         if (sports.indexOf(event.sport) < 0) {
           sports.push(event.sport);
           var sportClass = "sport-" + event.sport.replace(/[ !\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '-').toLowerCase();
-          $("#sport-filters").append("<span class='filter filter-sport filter-"+ sportClass +"'>" + event.sport + "</span> ");
+          var visibleClass = "";
+          if (selectedSports.indexOf(event.sport) >= 0) {
+            visibleClass = " visible";
+            $("."+sportClass).addClass("sport-visible");
+          }
+          $("#sport-filters").append("<span class='filter filter-sport filter-"+ sportClass + visibleClass +"'>" + event.sport + "</span> ");
           $(".filter-" + sportClass).off("click");
           $(".filter-" + sportClass).on("click", function (ev) {
             if ($(ev.target).hasClass("visible")) {
               $(ev.target).removeClass("visible")
               $("."+sportClass).removeClass("sport-visible");
+              if (selectedSports.indexOf(event.sport) >= 0) {
+                selectedSports.splice(selectedSports.indexOf(event.sport), 1);
+              }
             } else {
               $(ev.target).addClass("visible")
               $("."+sportClass).addClass("sport-visible");
+              if (selectedSports.indexOf(event.sport) < 0) {
+                selectedSports.push(event.sport);
+              }
             }
+            localStorage.setItem("sport-filters", JSON.stringify(selectedSports));
             showHideMatches();
           });
         }
@@ -128,20 +162,33 @@ function refreshFilters(events) {
           if (channels.indexOf(channel) < 0) {
             channels.push(channel);
             var channelClass = "channel-" + channel.replace(/[ !\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '-').toLowerCase();
-            $("#channel-filters").append("<span class='filter filter-channel filter-"+ channelClass +"'>" + channel + "</span> ");
+            var visibleClass = "";
+            if (selectedChannels.indexOf(channel) >= 0) {
+              visibleClass = " visible";
+              $("."+channelClass).addClass("channel-visible");
+            }
+            $("#channel-filters").append("<span class='filter filter-channel filter-"+ channelClass + visibleClass + "'>" + channel + "</span> ");
             $(".filter-" + channelClass).off("click");
             $(".filter-" + channelClass).on("click", function (ev) {
               if ($(ev.target).hasClass("visible")) {
                 $(ev.target).removeClass("visible")
                 $("."+channelClass).removeClass("channel-visible");
-              } else {
+                if (selectedChannels.indexOf(channel) >= 0) {
+                  selectedChannels.splice(selectedChannels.indexOf(channel), 1);
+                }
+            } else {
                 $(ev.target).addClass("visible")
                 $("."+channelClass).addClass("channel-visible");
+                if (selectedChannels.indexOf(channel) < 0) {
+                  selectedChannels.push(channel);
+                }
               }
+              localStorage.setItem("channel-filters", JSON.stringify(selectedChannels));
               showHideMatches();
             });
           }
         })
+
       }
 
       if (enabledFilters.indexOf("competitions") >= 0) {
@@ -198,6 +245,7 @@ function refreshFilters(events) {
     });
     $filter.detach().appendTo($filterContainer);
   }
+  showHideMatches();
 }
 
 function showHideMatches() {

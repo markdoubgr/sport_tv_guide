@@ -13,6 +13,7 @@ body {
 @media only screen and (max-width: 768px) {
     body {
         width: 100%;
+        margin: auto 0;
     }
 }
 
@@ -40,27 +41,63 @@ img.loader-img {
   height: 80px;
 }
 
+div#close-filters {
+  background-color: white;
+  color: black;
+  padding: 7px 10px;
+  font-weight: bold;
+  border-radius: 100px;
+  border: 1px solid black;
+  width: 10px;
+  position: absolute;
+  right: -15px;
+  top: -15px;
+}
+@media only screen and (max-width: 768px) {
+  div#close-filters {
+    right: 0px;
+  }
+}
+
 #filter-buttons span {
   float: right;
   padding: 0 5px;
 }
 
 span.filter {
-  padding-right: 10px;
+  padding: 0 10px;
 }
 
+div#filter-containers, #sport-filters, #channel-filters, #competition-filters {
+  display: none;
+}
 
 div#filter-containers {
   width: 1000px;
   position: absolute;
   margin-top: 20px;
 }
+
 div#match-filters {
     width: 250px;
     border: 1px solid black;
     padding: 5px;
     background-color: white;
     float: right;
+}
+
+@media only screen and (max-width: 1024px) {
+  div#filter-containers {
+    width: 730px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  div#filter-containers {
+    width: 100%;
+  }
+  div#match-filters {
+      width: auto;
+  }
 }
 
 div#match-list {
