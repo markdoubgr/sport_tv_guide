@@ -41,7 +41,7 @@ img.loader-img {
   height: 80px;
 }
 
-div#close-filters {
+div#close-filters, div#clear-filters {
   background-color: white;
   color: black;
   padding: 7px 10px;
@@ -50,13 +50,16 @@ div#close-filters {
   border: 1px solid black;
   width: 10px;
   position: absolute;
-  right: -15px;
-  top: -15px;
+  top: -10px;
 }
-@media only screen and (max-width: 768px) {
-  div#close-filters {
-    right: 0px;
-  }
+
+div#close-filters {
+  right: 0px;
+}
+
+div#clear-filters {
+  padding: 7px 11px 7px 9px;
+  right: 32px;
 }
 
 #filter-buttons span {
@@ -64,12 +67,15 @@ div#close-filters {
   padding: 0 5px;
 }
 
-span.filter {
-  padding: 0 10px;
+.filter {
+    float: left;
+    padding: 2px 10px;
+    margin: 0px;
 }
 
 div#filter-containers, #sport-filters, #channel-filters, #competition-filters {
   display: none;
+  padding-top: 5px;
 }
 
 div#filter-containers {
@@ -117,13 +123,6 @@ div#match-list {
 
 tr.match-tr {
     height: 100px;
-    /*border-bottom: 1px solid grey;
-    border-right: 1px solid grey;*/
-    /*border-spacing:5em;*/
-}
-
-tr.tr-space {
-    height: 20px;
 }
 
 td {
@@ -138,6 +137,7 @@ td.match-time {
 td .match-evt-match {
   font-size: 1.5em;
 }
+
 td .match-evt-competition {
   font-size: 1em;
 }

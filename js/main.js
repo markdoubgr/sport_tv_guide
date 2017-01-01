@@ -16,6 +16,16 @@ $("#close-filters").click(function (ev) {
   $("#channel-filters").hide();
   $("#competition-filters").hide();
 });
+$("#clear-filters").click(function (ev) {
+  var selectedChannels = [];
+  var selectedSports = [];
+  localStorage.setItem("sport-filters", JSON.stringify(selectedSports));
+  localStorage.setItem("channel-filters", JSON.stringify(selectedChannels));
+  $(".filter").removeClass("visible");
+  $("tr.match-tr").removeClass("sport-visible");
+  $("#clear-filters").hide();
+  showHideMatches();
+});
 $("#sport-filter-btn").click(function (ev) {
   $("#filter-containers").show();
   $("#sport-filters").show();
@@ -28,6 +38,7 @@ $("#channel-filter-btn").click(function (ev) {
   $("#channel-filters").show();
   $("#competition-filters").hide();
 });
+
 
 loadMatches(0);
 
@@ -135,7 +146,7 @@ function refreshFilters(events) {
             visibleClass = " visible";
             $("."+sportClass).addClass("sport-visible");
           }
-          $("#sport-filters").append("<span class='filter filter-sport filter-"+ sportClass + visibleClass +"'>" + event.sport + "</span> ");
+          $("#sport-filters").append("<div class='filter filter-sport filter-"+ sportClass + visibleClass +"'>" + event.sport + "</div> ");
           $(".filter-" + sportClass).off("click");
           $(".filter-" + sportClass).on("click", function (ev) {
             if ($(ev.target).hasClass("visible")) {
@@ -145,7 +156,8 @@ function refreshFilters(events) {
                 selectedSports.splice(selectedSports.indexOf(event.sport), 1);
               }
             } else {
-              $(ev.target).addClass("visible")
+              $(ev.target).addClass("visible");
+              $("#clear-filters").show();
               $("."+sportClass).addClass("sport-visible");
               if (selectedSports.indexOf(event.sport) < 0) {
                 selectedSports.push(event.sport);
@@ -167,7 +179,7 @@ function refreshFilters(events) {
               visibleClass = " visible";
               $("."+channelClass).addClass("channel-visible");
             }
-            $("#channel-filters").append("<span class='filter filter-channel filter-"+ channelClass + visibleClass + "'>" + channel + "</span> ");
+            $("#channel-filters").append("<div class='filter filter-channel filter-"+ channelClass + visibleClass + "'>" + channel + "</div> ");
             $(".filter-" + channelClass).off("click");
             $(".filter-" + channelClass).on("click", function (ev) {
               if ($(ev.target).hasClass("visible")) {
@@ -178,6 +190,7 @@ function refreshFilters(events) {
                 }
             } else {
                 $(ev.target).addClass("visible")
+                $("#clear-filters").show();
                 $("."+channelClass).addClass("channel-visible");
                 if (selectedChannels.indexOf(channel) < 0) {
                   selectedChannels.push(channel);
@@ -198,7 +211,7 @@ function refreshFilters(events) {
           if (competitionClass == "competition-") competitionClass = "competition-none";
           var competitionString = event.evt.competition;
           if (competitionString == "") competitionString = "unknown";
-          $("#competition-filters").append("<span class='filter filter-competition filter-"+ competitionClass +"'>" +  competitionString + "</span> ");
+          $("#competition-filters").append("<div class='filter filter-competition filter-"+ competitionClass +"'>" +  competitionString + "</div> ");
           $(".filter-" + competitionClass).off("click");
           $(".filter-" + competitionClass).on("click", function (ev) {
             if ($(ev.target).hasClass("visible")) {
