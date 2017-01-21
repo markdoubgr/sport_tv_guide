@@ -43,14 +43,19 @@ img.loader-img {
 
 div#close-filters, div#clear-filters {
   background-color: white;
-  color: black;
-  padding: 7px 10px;
+  color: cadetblue;
+  padding: 6px 10px;
   font-weight: bold;
-  border-radius: 100px;
-  border: 1px solid black;
+  /*border-radius: 100px;*/
+  border: 2px solid cadetblue;
   width: 10px;
   position: absolute;
   top: -10px;
+  cursor: pointer;
+}
+div#close-filters:hover, div#clear-filters:hover {
+  background-color: cadetblue;
+  color: white;
 }
 
 div#close-filters {
@@ -58,19 +63,42 @@ div#close-filters {
 }
 
 div#clear-filters {
-  padding: 7px 11px 7px 9px;
-  right: 32px;
+  padding: 5px 14px 7px 9px;
+  right: 40px;
 }
 
 #filter-buttons span {
-  float: right;
-  padding: 0 5px;
+    float: right;
+    padding: 5px;
+    background: cadetblue;
+    color: white;
+    margin: 5px 0 5px 10px;
+    font-size: 1.2em;
+    border: 2px solid cadetblue;
+    cursor: pointer;
+}
+
+#filter-buttons span:hover {
+    background: white;
+    color: cadetblue;
 }
 
 .filter {
     float: left;
-    padding: 2px 10px;
-    margin: 0px;
+    padding: 5px;
+    margin: 5px;
+    color: white;
+    background-color: cadetblue;
+    border: 2px solid cadetblue;
+    cursor: pointer;
+}
+.filter:hover {
+    color: cadetblue;
+    background-color: white;
+}
+
+.filter img {
+  pointer-events: none;
 }
 
 div#filter-containers, #sport-filters, #channel-filters, #competition-filters {
@@ -81,14 +109,14 @@ div#filter-containers, #sport-filters, #channel-filters, #competition-filters {
 div#filter-containers {
   width: 1000px;
   position: absolute;
-  margin-top: 20px;
+  margin-top: 55px;
 }
 
 div#match-filters {
     width: 250px;
-    border: 1px solid black;
+    border: 2px solid cadetblue;
     padding: 5px;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.8);
     float: right;
 }
 
@@ -172,5 +200,5 @@ td.competition-nfl-matches {
 }
 
 .filter-sport.visible, .filter-channel.visible, .filter-competition.visible {
-  background-color: grey;
+  background-color: teal;
 }

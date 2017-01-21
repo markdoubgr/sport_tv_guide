@@ -31,12 +31,21 @@ $("#sport-filter-btn").click(function (ev) {
   $("#sport-filters").show();
   $("#channel-filters").hide();
   $("#competition-filters").hide();
+  $("#day-filters").hide();
 });
 $("#channel-filter-btn").click(function (ev) {
   $("#filter-containers").show();
   $("#sport-filters").hide();
   $("#channel-filters").show();
   $("#competition-filters").hide();
+  $("#day-filters").hide();
+});
+$("#day-filter-btn").click(function (ev) {
+  $("#filter-containers").show();
+  $("#sport-filters").hide();
+  $("#channel-filters").hide();
+  $("#competition-filters").hide();
+  $("#day-filters").show();
 });
 
 
@@ -155,6 +164,10 @@ function refreshFilters(events) {
               if (selectedSports.indexOf(event.sport) >= 0) {
                 selectedSports.splice(selectedSports.indexOf(event.sport), 1);
               }
+              console.log("selectedChannels, selectedSports", selectedChannels, selectedSports);
+              if (selectedChannels.length == 0 && selectedSports.length == 0) {
+                $("#clear-filters").hide();
+              }
             } else {
               $(ev.target).addClass("visible");
               $("#clear-filters").show();
@@ -179,7 +192,8 @@ function refreshFilters(events) {
               visibleClass = " visible";
               $("."+channelClass).addClass("channel-visible");
             }
-            $("#channel-filters").append("<div class='filter filter-channel filter-"+ channelClass + visibleClass + "'>" + channel + "</div> ");
+            var channelImg = channel.replace(/[ !\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '-').toLowerCase();
+            $("#channel-filters").append("<div class='filter filter-channel filter-"+ channelClass + visibleClass + "'>" + "<img src='img/" + channelImg + ".jpg' alt='" + channel + "'>" + "</div> ");
             $(".filter-" + channelClass).off("click");
             $(".filter-" + channelClass).on("click", function (ev) {
               if ($(ev.target).hasClass("visible")) {
@@ -187,6 +201,9 @@ function refreshFilters(events) {
                 $("."+channelClass).removeClass("channel-visible");
                 if (selectedChannels.indexOf(channel) >= 0) {
                   selectedChannels.splice(selectedChannels.indexOf(channel), 1);
+                }
+                if (selectedChannels.length == 0 && selectedSports.length == 0) {
+                  $("#clear-filters").hide();
                 }
             } else {
                 $(ev.target).addClass("visible")
