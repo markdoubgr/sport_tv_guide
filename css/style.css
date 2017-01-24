@@ -50,7 +50,7 @@ div#close-filters, div#clear-filters {
   border: 2px solid cadetblue;
   width: 10px;
   position: absolute;
-  top: -10px;
+  top: -15px;
   cursor: pointer;
 }
 div#close-filters:hover, div#clear-filters:hover {
@@ -113,7 +113,7 @@ div#filter-containers, #sport-filters, #channel-filters, #competition-filters {
 div#filter-containers {
   width: 1000px;
   position: absolute;
-  margin-top: 55px;
+  margin-top: 60px;
 }
 
 div#match-filters {

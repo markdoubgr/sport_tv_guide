@@ -12,19 +12,19 @@
 		<div id="header">
 			<div id="logo"><img src="img/logo.png"></div>
 			<div id="filter-buttons">
-				<span id="day-filter-btn" class="filter-btn">day</span>
-        <span id="channel-filter-btn" class="filter-btn">channels</span>
-				<span id="sport-filter-btn" class="filter-btn">sports</span>
+				<span id="day-filter-btn" class="filter-btn" data-popup="day-filters">day</span>
+        <span id="channel-filter-btn" class="filter-btn" data-popup="channel-filters">channels</span>
+				<span id="sport-filter-btn" class="filter-btn" data-popup="sport-filters">sports</span>
 			</div>
 		</div>
 		<div id="filter-containers">
       <div id="close-filters">X</div>
       <div id="clear-filters">[-]</div>
 			<div id="match-filters">
-				<div id="sport-filters"></div>
-				<div id="channel-filters"></div>
-				<div id="competition-filters"></div>
-        <div id="day-filters">
+				<div id="sport-filters" class="filter-popup"></div>
+				<div id="channel-filters" class="filter-popup"></div>
+				<div id="competition-filters" class="filter-popup"></div>
+        <div id="day-filters" class="filter-popup">
 					<div class="today-select date-select filter">today</div>
 					<div class="tomorrow-select date-select filter">tomorrow</div>
 					<div class="two-select date-select filter">+2</div>

@@ -29,30 +29,49 @@ $("#clear-filters").click(function (ev) {
   showHideMatches();
 });
 $(".filter-btn").click(function (ev) {
-  $(".filter-btn").removeClass("active");
-  $(ev.target).addClass("active");
+  if ($(ev.target).hasClass("active")) {
+    $(".filter-btn").removeClass("active");
+    $(".filter-popup").hide();
+    $("#filter-containers").hide();
+  } else {
+    $(".filter-btn").removeClass("active");
+    $(".filter-popup").hide();
+    // console.log("asd", $(ev.target).data("popup"));
+    $(ev.target).addClass("active");
+    $("#" + $(ev.target).data("popup")).show();
+    $("#filter-containers").show();
+  }
+
+    // if (!$(ev.target).hasClass("active")) {
+    //   $("#sport-filters").show();
+    // }
+    // $("#competition-filters").hide();
+    // $("#day-filters").hide();
+
 });
-$("#sport-filter-btn").click(function (ev) {
-  $("#filter-containers").show();
-  $("#sport-filters").show();
-  $("#channel-filters").hide();
-  $("#competition-filters").hide();
-  $("#day-filters").hide();
-});
-$("#channel-filter-btn").click(function (ev) {
-  $("#filter-containers").show();
-  $("#sport-filters").hide();
-  $("#channel-filters").show();
-  $("#competition-filters").hide();
-  $("#day-filters").hide();
-});
-$("#day-filter-btn").click(function (ev) {
-  $("#filter-containers").show();
-  $("#sport-filters").hide();
-  $("#channel-filters").hide();
-  $("#competition-filters").hide();
-  $("#day-filters").show();
-});
+// $("#sport-filter-btn").click(function (ev) {
+//   if (!$(ev.target).hasClass("active")) {
+//     $("#filter-containers").show();
+//     $("#sport-filters").show();
+//   }
+//   $("#channel-filters").hide();
+//   $("#competition-filters").hide();
+//   $("#day-filters").hide();
+// });
+// $("#channel-filter-btn").click(function (ev) {
+//   $("#filter-containers").show();
+//   $("#sport-filters").hide();
+//   $("#channel-filters").show();
+//   $("#competition-filters").hide();
+//   $("#day-filters").hide();
+// });
+// $("#day-filter-btn").click(function (ev) {
+//   $("#filter-containers").show();
+//   $("#sport-filters").hide();
+//   $("#channel-filters").hide();
+//   $("#competition-filters").hide();
+//   $("#day-filters").show();
+// });
 
 
 loadMatches(0);
