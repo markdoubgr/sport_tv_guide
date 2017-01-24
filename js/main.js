@@ -2,6 +2,7 @@
 var excludedSports = ["Horse Racing", "Greyhound Racing"];
 var excludedChannels = ["Betfair Live Video"];
 var enabledFilters = ["channels", "sports"];
+var freeviewChannels = ["Five","BBC 4","BBC 3","BBC 2","BBC 1","BBCi","ITV 4","ITV 3","ITV 2","ITV 1"];
 // var excludedSports = [];
 // var excludedChannels = [];
 // var enabledFilters = ["channels", "competitions", "sports"];
@@ -15,6 +16,7 @@ $("#close-filters").click(function (ev) {
   $("#sport-filters").hide();
   $("#channel-filters").hide();
   $("#competition-filters").hide();
+  $(".filter-btn").removeClass("active");
 });
 $("#clear-filters").click(function (ev) {
   var selectedChannels = [];
@@ -25,6 +27,10 @@ $("#clear-filters").click(function (ev) {
   $("tr.match-tr").removeClass("sport-visible");
   $("#clear-filters").hide();
   showHideMatches();
+});
+$(".filter-btn").click(function (ev) {
+  $(".filter-btn").removeClass("active");
+  $(ev.target).addClass("active");
 });
 $("#sport-filter-btn").click(function (ev) {
   $("#filter-containers").show();
@@ -128,7 +134,6 @@ function getDateStr(daysAfter) {
   var d = new Date();
   d.setDate(d.getDate()+daysAfter);
   var ret = d.getFullYear()+"-"+(parseInt(d.getMonth())+1)+"-"+d.getDate();
-  console.log(ret);
   return ret;
 }
 
@@ -143,6 +148,42 @@ function refreshFilters(events) {
   $("#sport-filters").html("");
   $("#competition-filters").html("");
   $("#channel-filters").html("");
+
+  var channelImg = "freeviewchannels";
+  $("#channel-filters").append("<div class='filter filter-channel filter-freeviewChannels'>" + "<img src='img/" + channelImg + ".jpg' alt='" + freeviewChannels + "'>" + "</div> ");
+  checkFreeview(selectedChannels);
+  $(".filter-freeviewChannels").on("click", function (ev) {
+    if ($(ev.target).hasClass("visible")) {
+      $(ev.target).removeClass("visible")
+      $(".filter-freeviewChannels").removeClass("channel-visible");
+      $.each(freeviewChannels, function (ind, channel) {
+        if (selectedChannels.indexOf(channel) >= 0) {
+          selectedChannels.splice(selectedChannels.indexOf(channel), 1);
+          var channelClass = "channel-" + channel.replace(/[ !\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '-').toLowerCase();
+          $("."+channelClass).removeClass("channel-visible");
+          $(".filter-"+channelClass).removeClass("visible");
+        }
+      });
+      if (selectedChannels.length == 0 && selectedSports.length == 0) {
+        $("#clear-filters").hide();
+      }
+  } else {
+      $(ev.target).addClass("visible")
+      $("#clear-filters").show();
+      $(".filter-freeviewChannels").addClass("channel-visible");
+      $.each(freeviewChannels, function (ind, channel) {
+        if (selectedChannels.indexOf(channel) < 0) {
+          selectedChannels.push(channel);
+          var channelClass = "channel-" + channel.replace(/[ !\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '-').toLowerCase();
+          $("."+channelClass).addClass("channel-visible");
+          $(".filter-"+channelClass).addClass("visible");
+        }
+      });
+    }
+    localStorage.setItem("channel-filters", JSON.stringify(selectedChannels));
+    showHideMatches();
+  });
+
   $.each(events, function (index, event) {
 
     if (excludedSports.indexOf(event.sport) < 0) {
@@ -205,7 +246,7 @@ function refreshFilters(events) {
                 if (selectedChannels.length == 0 && selectedSports.length == 0) {
                   $("#clear-filters").hide();
                 }
-            } else {
+              } else {
                 $(ev.target).addClass("visible")
                 $("#clear-filters").show();
                 $("."+channelClass).addClass("channel-visible");
@@ -213,6 +254,7 @@ function refreshFilters(events) {
                   selectedChannels.push(channel);
                 }
               }
+              checkFreeview(selectedChannels);
               localStorage.setItem("channel-filters", JSON.stringify(selectedChannels));
               showHideMatches();
             });
@@ -301,5 +343,21 @@ function showHideMatches() {
         $(row).hide();
       }
     })
+  }
+}
+
+function checkFreeview(selectedChannels) {
+  var freeviewEnabled = true;
+  $.each(freeviewChannels, function (i, channel) {
+    if (selectedChannels.indexOf(channel) < 0) {
+      freeviewEnabled = false;
+    }
+  });
+  if (freeviewEnabled) {
+    $(".filter-freeviewChannels").addClass("visible");
+    $(".freeviewChannels").addClass("channel-visible");
+  } else {
+    $(".filter-freeviewChannels").removeClass("visible");
+    $(".freeviewChannels").removeClass("channel-visible");
   }
 }
