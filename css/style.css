@@ -53,9 +53,12 @@ div#close-filters, div#clear-filters {
   top: -15px;
   cursor: pointer;
 }
-div#close-filters:hover, div#clear-filters:hover {
-  background-color: cadetblue;
-  color: white;
+
+@media only screen and (min-width : 992px) {
+  div#close-filters:hover, div#clear-filters:hover {
+    background-color: cadetblue;
+    color: white;
+  }
 }
 
 div#close-filters {
@@ -82,9 +85,11 @@ div#clear-filters {
     background: teal;
 }
 
-#filter-buttons span:hover {
-    background: white;
-    color: cadetblue;
+@media only screen and (min-width : 992px) {
+  #filter-buttons span:hover {
+      background: white;
+      color: cadetblue;
+  }
 }
 
 .filter {
@@ -96,11 +101,12 @@ div#clear-filters {
     border: 2px solid cadetblue;
     cursor: pointer;
 }
-.filter:hover {
-    color: cadetblue;
-    background-color: white;
+@media only screen and (min-width : 992px) {
+  .filter:hover {
+      color: cadetblue;
+      background-color: white;
+  }
 }
-
 .filter img {
   pointer-events: none;
 }
