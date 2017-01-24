@@ -36,42 +36,11 @@ $(".filter-btn").click(function (ev) {
   } else {
     $(".filter-btn").removeClass("active");
     $(".filter-popup").hide();
-    // console.log("asd", $(ev.target).data("popup"));
     $(ev.target).addClass("active");
     $("#" + $(ev.target).data("popup")).show();
     $("#filter-containers").show();
   }
-
-    // if (!$(ev.target).hasClass("active")) {
-    //   $("#sport-filters").show();
-    // }
-    // $("#competition-filters").hide();
-    // $("#day-filters").hide();
-
 });
-// $("#sport-filter-btn").click(function (ev) {
-//   if (!$(ev.target).hasClass("active")) {
-//     $("#filter-containers").show();
-//     $("#sport-filters").show();
-//   }
-//   $("#channel-filters").hide();
-//   $("#competition-filters").hide();
-//   $("#day-filters").hide();
-// });
-// $("#channel-filter-btn").click(function (ev) {
-//   $("#filter-containers").show();
-//   $("#sport-filters").hide();
-//   $("#channel-filters").show();
-//   $("#competition-filters").hide();
-//   $("#day-filters").hide();
-// });
-// $("#day-filter-btn").click(function (ev) {
-//   $("#filter-containers").show();
-//   $("#sport-filters").hide();
-//   $("#channel-filters").hide();
-//   $("#competition-filters").hide();
-//   $("#day-filters").show();
-// });
 
 
 loadMatches(0);
@@ -139,7 +108,6 @@ function createEventsTable(events) {
       var channelsStr = "";
       $.each(evt.channels, function (ind, channel) {
         var channelImg = channel.replace(/[ !\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '-').toLowerCase();
-        // var channelImg= "<span class='"+ channel.replace(/[ !\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '-').toLowerCase() +"'>"+ channel +"</span>"
         channelsStr +="<span class='"+ channelImg +"'><img src='img/" + channelImg + ".jpg' alt='" + channel + "'></span>";
       });
       tableStr += channelsStr;
@@ -224,7 +192,6 @@ function refreshFilters(events) {
               if (selectedSports.indexOf(event.sport) >= 0) {
                 selectedSports.splice(selectedSports.indexOf(event.sport), 1);
               }
-              console.log("selectedChannels, selectedSports", selectedChannels, selectedSports);
               if (selectedChannels.length == 0 && selectedSports.length == 0) {
                 $("#clear-filters").hide();
               }
@@ -320,9 +287,11 @@ function refreshFilters(events) {
     var $filterContainer = $('#channel-filters');
 	  var $filter = $filterContainer.children('.filter-channel');
     $filter.sort(function(a,b){
-    	if($(a).text() > $(b).text())  return 1;
-    	if($(a).text() < $(b).text()) return -1;
-    	return 0;
+      if($(a).find("img")[0].alt.length >50) return -1;
+      if($(b).find("img")[0].alt.length >50) return 1;
+      if($(a).find("img")[0].alt > $(b).find("img")[0].alt) return 1;
+      if($(a).find("img")[0].alt < $(b).find("img")[0].alt) return -1;
+      return 0;
     });
     $filter.detach().appendTo($filterContainer);
   }
