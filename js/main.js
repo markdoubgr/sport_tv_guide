@@ -1,12 +1,17 @@
 
-var excludedSports = ["Horse Racing", "Greyhound Racing"];
+var excludedSports = ["Horse Racing", "Greyhound Racing", "Special Bets"];
 var excludedChannels = ["Betfair Live Video"];
 var enabledFilters = ["channels", "sports"];
 var freeviewChannels = ["Five","BBC 4","BBC 3","BBC 2","BBC 1","BBCi","ITV 4","ITV 3","ITV 2","ITV 1"];
+var daysOfWeek = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 // var excludedSports = [];
 // var excludedChannels = [];
 // var enabledFilters = ["channels", "competitions", "sports"];
 
+$(".date-select").click(function (ev) {
+  $(".date-select").removeClass("visible");
+  $(ev.target).addClass("visible");
+});
 $(".today-select").click(function (ev) { loadMatches(0) });
 $(".tomorrow-select").click(function (ev) { loadMatches(1) });
 $(".two-select").click(function (ev) { loadMatches(2) });
@@ -42,10 +47,22 @@ $(".filter-btn").click(function (ev) {
   }
 });
 
+$(".today-select").addClass("visible");
 
+var days = [new Date(), new Date(), new Date(), new Date()];
+// days[0] = new Date();
 loadMatches(0);
+// var day1 = new Date();
+// var day2 = new Date();
+// var day3 = new Date();
+days[1].setTime( days[0].getTime() + 1 * 86400000 );
+days[2].setTime( days[0].getTime() + 2 * 86400000 );
+days[3].setTime( days[0].getTime() + 3 * 86400000 );
+$(".two-select").html(daysOfWeek[days[2].getDay()]);
+$(".three-select").html(daysOfWeek[days[3].getDay()]);
 
 function loadMatches(daysAfter) {
+  $("#date").html(days[daysAfter].toDateString());
   $("#loading").show();
   var date = getDateStr(daysAfter);
   if (!date) date = "";
@@ -108,7 +125,7 @@ function createEventsTable(events) {
       var channelsStr = "";
       $.each(evt.channels, function (ind, channel) {
         var channelImg = channel.replace(/[ !\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '-').toLowerCase();
-        channelsStr +="<span class='"+ channelImg +"'><img src='img/" + channelImg + ".jpg' alt='" + channel + "'></span>";
+        channelsStr +="<span class='"+ channelImg +"'><img src='img/" + channelImg + ".png' alt='" + channel + "'></span>";
       });
       tableStr += channelsStr;
       tableStr += "</td></tr>";
@@ -137,7 +154,7 @@ function refreshFilters(events) {
   $("#channel-filters").html("");
 
   var channelImg = "freeviewchannels";
-  $("#channel-filters").append("<div class='filter filter-channel filter-freeviewChannels'>" + "<img src='img/" + channelImg + ".jpg' alt='" + freeviewChannels + "'>" + "</div> ");
+  $("#channel-filters").append("<div class='filter filter-channel filter-freeviewChannels'>" + "<img src='img/" + channelImg + ".png' alt='" + freeviewChannels + "'>" + "</div> ");
   checkFreeview(selectedChannels);
   $(".filter-freeviewChannels").on("click", function (ev) {
     if ($(ev.target).hasClass("visible")) {
@@ -220,7 +237,7 @@ function refreshFilters(events) {
               $("."+channelClass).addClass("channel-visible");
             }
             var channelImg = channel.replace(/[ !\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '-').toLowerCase();
-            $("#channel-filters").append("<div class='filter filter-channel filter-"+ channelClass + visibleClass + "'>" + "<img src='img/" + channelImg + ".jpg' alt='" + channel + "'>" + "</div> ");
+            $("#channel-filters").append("<div class='filter filter-channel filter-"+ channelClass + visibleClass + "'>" + "<img src='img/" + channelImg + ".png' alt='" + channel + "'>" + "</div> ");
             $(".filter-" + channelClass).off("click");
             $(".filter-" + channelClass).on("click", function (ev) {
               if ($(ev.target).hasClass("visible")) {

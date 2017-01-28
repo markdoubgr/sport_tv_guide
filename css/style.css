@@ -70,6 +70,12 @@ div#clear-filters {
   right: 40px;
 }
 
+#filter-buttons {
+    width: 200px;
+    float: right;
+}
+
+
 #filter-buttons span {
     float: right;
     padding: 5px;
@@ -109,6 +115,7 @@ div#clear-filters {
 }
 .filter img {
   pointer-events: none;
+  width: 75px;
 }
 
 div#filter-containers, #sport-filters, #channel-filters, #competition-filters {
@@ -123,7 +130,7 @@ div#filter-containers {
 }
 
 div#match-filters {
-    width: 250px;
+    width: 297px;
     border: 2px solid cadetblue;
     padding: 5px;
     background-color: rgba(255, 255, 255, 0.8);
@@ -142,6 +149,10 @@ div#match-filters {
   div#match-filters {
       width: auto;
   }
+}
+#date {
+  float: right;
+  margin-top: 22px;
 }
 
 div#match-list {
@@ -209,6 +220,6 @@ td.competition-nfl-matches {
   }
 }
 
-.filter-sport.visible, .filter-channel.visible, .filter-competition.visible {
+.filter.visible {
   background-color: teal;
 }
