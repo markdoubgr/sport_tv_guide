@@ -46,7 +46,6 @@ div#close-filters, div#clear-filters {
   color: cadetblue;
   padding: 6px 10px;
   font-weight: bold;
-  /*border-radius: 100px;*/
   border: 2px solid cadetblue;
   width: 10px;
   position: absolute;
@@ -119,7 +118,7 @@ div#clear-filters {
   width: 75px;
 }
 
-div#filter-containers, #sport-filters, #channel-filters, #competition-filters {
+div#filter-containers, #sport-filters, #channel-filters, #competition-filters, #day-filters {
   display: none;
   padding-top: 5px;
 }
@@ -165,14 +164,12 @@ div#match-list {
 #header, table#match-table {
     width: 100%;
     margin: auto;
+    border-collapse: collapse;
 }
-
-/*#header {
-  height: 20px;
-}*/
 
 tr.match-tr {
     height: 100px;
+    border-top: 2px solid teal;
 }
 
 td {
