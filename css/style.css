@@ -34,7 +34,7 @@ img.loader-img {
 }
 #logo {
   float: left;
-  padding-right: 10px;
+  padding: 5px;
 }
 
 #logo img {
@@ -73,6 +73,7 @@ div#clear-filters {
 #filter-buttons {
     width: 200px;
     float: right;
+    padding-right: 5px;
 }
 
 
