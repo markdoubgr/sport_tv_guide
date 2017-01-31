@@ -195,6 +195,11 @@ td.match-channels {
   width: 140px;
 }
 
+td.match-channels.multiple-channels.multiple-channels-2 img {
+  width: 66px;
+  padding: 0 2px;
+}
+
 td.competition-nfl-matches {
   background-color: blue;
   color: white;
@@ -215,7 +220,7 @@ td.competition-nfl-matches {
   td.match-channels {
     width: 80px;
   }
-  .match-channels img {
+  td.match-channels img, td.match-channels.multiple-channels.multiple-channels-2 img {
     width: 60px;
   }
 }

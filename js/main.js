@@ -121,7 +121,11 @@ function createEventsTable(events) {
       <td class='match-sport "+ sportClass +"'>"+ evt.sport +"</td>\
       <td class='match-evt'><div class='match-evt-match'>"+ evt.evt.match +"</div>\
       <div class='match-evt-competition "+ competitionClass +"'>"+ evt.evt.competition +"</div></td>\
-      <td class='match-channels'>";
+      <td class='match-channels";
+      if (evt.channels.length > 1) {
+        tableStr += " multiple-channels multiple-channels-"+evt.channels.length;
+      }
+      tableStr += "'>";
       var channelsStr = "";
       $.each(evt.channels, function (ind, channel) {
         var channelImg = channel.replace(/[ !\"#$%&'\(\)\*\+,\.\/:;<=>\?\@\[\\\]\^`\{\|\}~]/g, '-').toLowerCase();
